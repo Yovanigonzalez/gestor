@@ -50,6 +50,22 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Utilidades
+            </div>
+
+                        <!-- Nav Item - Usuarios -->
+            <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
 
             <!-- Heading -->
             <div class="sidebar-heading">
