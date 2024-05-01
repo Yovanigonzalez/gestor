@@ -112,9 +112,9 @@ session_start();
                                         <div class="form-group">
                                             <label for="rol">Rol</label>
                                             <select class="form-control" id="rol" name="rol" required>
-                                                <option value="admin">Administrador</option>
-                                                <option value="empleado">Empleado</option>
-                                                <option value="cliente">Cliente</option>
+                                                <option value="ADMIN">Administrador</option>
+                                                <option value="EMPLEADO">Empleado</option>
+                                                <option value="CLIENTE">Cliente</option>
                                             </select>
                                         </div>
 
@@ -122,8 +122,8 @@ session_start();
                                         <div class="form-group">
                                             <label for="estatus">Estatus</label>
                                             <select class="form-control" id="estatus" name="estatus" required>
-                                                <option value="activo">Activo</option>
-                                                <option value="inactivo">Inactivo</option>
+                                                <option value="ACTIVO">Activo</option>
+                                                <option value="INACTIVO">Inactivo</option>
                                             </select>
                                         </div>
 

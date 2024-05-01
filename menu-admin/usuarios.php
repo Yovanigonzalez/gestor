@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <?php include 'menu.php';?>
 
 <!DOCTYPE html>
@@ -38,24 +43,49 @@
                     <div class="row">
 
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Total de Empleados</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <!-- Total de Empleados -->
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-friends fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <?php
+// Conexión a la base de datos (reemplaza los valores con los de tu configuración)
+include '../config/conexion.php';
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta para obtener el total de empleados activos
+$sql = "SELECT COUNT(*) AS total_empleados FROM usuarios WHERE estatus = 'ACTIVO' AND rol = 'EMPLEADO'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Mostrar el resultado
+    $row = $result->fetch_assoc();
+    $total_empleados = $row["total_empleados"];
+} else {
+    $total_empleados = 0;
+}
+
+$conn->close();
+?>
+
+<!-- Coloca este código en tu página HTML donde desees mostrar el total de empleados -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                        Total de Empleados</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_empleados; ?></div>
+                </div>
+                <!-- Total de Empleados -->
+                <div class="col-auto">
+                    <i class="fas fa-user-friends fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
@@ -83,11 +113,11 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Gestión de Usuarios</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Gestión de Empleados</h6>
                                 <div class="dropdown no-arrow">
 
                                 </div>
@@ -100,13 +130,99 @@
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
-                                                <th>Correo Electrónico</th>
+                                                <!--<th>Correo Electrónico</th>-->
                                                 <th>Rol</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tabla-usuarios">
                                             <!-- Los usuarios se cargarán aquí dinámicamente -->
+                                            <script>
+    // Función para cargar los usuarios desde el servidor
+    function cargarUsuarios() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Cuando se recibe la respuesta del servidor
+                var usuarios = JSON.parse(this.responseText);
+
+                // Limpiar la tabla
+                var tablaUsuarios = document.getElementById("tabla-usuarios");
+                tablaUsuarios.innerHTML = "";
+
+                // Iterar sobre los usuarios y agregarlos a la tabla
+                for (var i = 0; i < usuarios.length; i++) {
+                    var usuario = usuarios[i];
+                    var fila = "<tr>";
+                    fila += "<td>" + usuario.nombre + "</td>";
+                    //fila += "<td>" + usuario.correo + "</td>";
+                    fila += "<td>" + usuario.rol + "</td>";
+                    fila += "<td>";
+                    fila += "<button class='btn btn-primary mr-1' onclick='editarUsuario(" + usuario.id + ")'>Editar</button>";
+                    fila += "<button class='btn btn-danger' onclick='confirmarEliminarUsuario(" + usuario.id + ")'>Eliminar</button>";
+                    fila += "</td>";
+                    fila += "</tr>";
+                    tablaUsuarios.innerHTML += fila;
+                }
+            }
+        };
+        xhttp.open("GET", "obtener_usuarios.php", true); // Reemplaza "obtener_usuarios.php" con la URL de tu script PHP para obtener usuarios
+        xhttp.send();
+    }
+
+    // Función para editar un usuario
+// Función para editar un usuario
+function editarUsuario(id) {
+    // Redirigir a la página de edición con el ID del usuario como parámetro en la URL
+    window.location.href = "editar_usuario.php?id=" + id;
+}
+
+
+    // Función para confirmar la eliminación de un usuario
+    function confirmarEliminarUsuario(id) {
+        // Mostrar mensaje de confirmación
+        var confirmacion = confirm("¿Estás seguro de que quieres eliminar este usuario?");
+        // Si el usuario confirma la eliminación
+        if (confirmacion) {
+            // Llamar a la función para eliminar el usuario
+            eliminarUsuario(id);
+        }
+    }
+
+// Función para eliminar un usuario
+function eliminarUsuario(id) {
+    // Realizar una solicitud AJAX al servidor para cambiar el estado del usuario
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Manejar la respuesta del servidor
+            var response = JSON.parse(this.responseText);
+            if (response.success) {
+                // Si la operación fue exitosa, mostrar un mensaje de éxito
+                alert(response.message);
+                // Recargar la lista de usuarios
+                cargarUsuarios();
+            } else {
+                // Si hubo un error, mostrar un mensaje de error
+                alert(response.message);
+            }
+        }
+    };
+    xhttp.open("POST", "eliminar_usuario.php", true); // Reemplaza "eliminar_usuario.php" con la URL de tu script PHP para eliminar usuarios
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id=" + id);
+}
+
+
+    // Llamar a la función para cargar usuarios cuando se cargue la página
+    window.onload = function() {
+        cargarUsuarios();
+    };
+</script>
+
+
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -114,49 +230,6 @@
                         </div>
                     </div>
 
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Content Row -->
                     <div class="row">
