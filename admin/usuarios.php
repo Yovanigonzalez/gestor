@@ -44,28 +44,28 @@ session_start();
 
 
                     <?php
-// Conexión a la base de datos (reemplaza los valores con los de tu configuración)
-include '../config/conexion.php';
+                    // Conexión a la base de datos (reemplaza los valores con los de tu configuración)
+                    include '../config/conexion.php';
 
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+                    // Verificar conexión
+                    if ($conn->connect_error) {
+                        die("Conexión fallida: " . $conn->connect_error);
+                    }
 
-// Consulta para obtener el total de empleados activos
-$sql = "SELECT COUNT(*) AS total_empleados FROM usuarios WHERE estatus = 'ACTIVO' AND rol = 'EMPLEADO'";
-$result = $conn->query($sql);
+                    // Consulta para obtener el total de empleados activos
+                    $sql = "SELECT COUNT(*) AS total_empleados FROM usuarios WHERE estatus = 'ACTIVO' AND rol = 'EMPLEADO'";
+                    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // Mostrar el resultado
-    $row = $result->fetch_assoc();
-    $total_empleados = $row["total_empleados"];
-} else {
-    $total_empleados = 0;
-}
+                    if ($result->num_rows > 0) {
+                        // Mostrar el resultado
+                        $row = $result->fetch_assoc();
+                        $total_empleados = $row["total_empleados"];
+                    } else {
+                        $total_empleados = 0;
+                    }
 
-$conn->close();
-?>
+                    $conn->close();
+                    ?>
 
 <!-- Coloca este código en tu página HTML donde desees mostrar el total de empleados -->
 <div class="col-xl-3 col-md-6 mb-4">
