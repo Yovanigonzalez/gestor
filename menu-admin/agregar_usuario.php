@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <?php include 'menu.php'; ?>
 
 <!DOCTYPE html>
@@ -63,6 +68,18 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
+                                <?php
+                                    // Verifica si hay un mensaje en la sesión
+                                    if(isset($_SESSION['mensaje']) && isset($_SESSION['mensaje_tipo'])) {
+                                        $mensaje_tipo = $_SESSION['mensaje_tipo'];
+                                        $mensaje = $_SESSION['mensaje'];
+                                        echo "<div class=\"alert alert-$mensaje_tipo\">$mensaje</div>";
+                                        unset($_SESSION['mensaje']); // Elimina el mensaje para evitar que se muestre de nuevo en futuras visitas
+                                        unset($_SESSION['mensaje_tipo']); // Elimina el tipo de mensaje
+                                    }
+
+                                    ?>
+
                                     <!-- Formulario de registro de usuarios -->
                                     <form action="guardar_usuario.php" method="POST">
 

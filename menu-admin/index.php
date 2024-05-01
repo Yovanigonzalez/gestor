@@ -24,8 +24,6 @@
 
 </head>
 
-<?php include 'perfil.php'; ?>
-
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
