@@ -112,7 +112,7 @@ $conn->close();
                                     </div>
                                     <br>
                                     <div>
-                                        <a class="btn btn-facebook btn-user btn-block" href="register.html">Iniciar sesión </a>
+                                        <a class="btn btn-facebook btn-user btn-block" href="verificar_usuario.php">Iniciar sesión </a>
                                     </div>
                                 </div>
                             </div>
