@@ -23,6 +23,27 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
+<?php
+// Verificar si hay un mensaje de error o éxito en la URL
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    // Mostrar mensaje de error según el tipo de error
+    switch ($error) {
+        case 'incorrect_credentials':
+            $mensaje = "Correo electrónico o contraseña incorrectos.";
+            break;
+        case 'inactive_user':
+            $mensaje = "No tienes acceso porque ya no formas parte de nuestro equipo de trabajo.";
+            break;
+        case 'no_valid_role':
+            $mensaje = "No tienes un rol válido asignado.";
+            break;
+        default:
+            $mensaje = "Ha ocurrido un error.";
+            break;
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +106,13 @@ $conn->close();
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
+                                <?php if (isset($mensaje)): ?>
+                                <!-- Mostrar mensaje de error -->
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $mensaje; ?>
+                                </div>
+                                <?php endif; ?>
+
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Hola Bienvenido! <br> <h6>Inicia sesion con tu correo y contraseña</h6></h1> 
                                     </div>
@@ -98,21 +126,15 @@ $conn->close();
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Ingresa tu contraseña">
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Ver contraseña
-                                                    </label>
-                                            </div>
-                                        </div>
                                     </form>
                                     <hr>
                                     <div>
-                                        <a class="btn btn-google btn-user btn-block" href="forgot-password.php">Olvidaste tu contraseña?</a>
+                                        <a class="btn btn-facebook btn-user btn-block" href="verificar_usuario.php">Iniciar sesión </a>
                                     </div>
                                     <br>
+
                                     <div>
-                                        <a class="btn btn-facebook btn-user btn-block" href="verificar_usuario.php">Iniciar sesión </a>
+                                        <a class="btn btn-google btn-user btn-block" href="forgot-password.php">Olvidaste tu contraseña?</a>
                                     </div>
                                 </div>
                             </div>
