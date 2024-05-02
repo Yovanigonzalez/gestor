@@ -16,7 +16,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agregar Usuarios</title>
+    <title>Usuarios Inactivos</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@ session_start();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Agregar Usuarios</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Usuarios Inactivos</h1>
                     </div>
 
                     <!-- Content Row -->

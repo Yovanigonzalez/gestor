@@ -3,9 +3,42 @@
 
 include 'config/conexion.php';
 
-// Verifica la conexión
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Verifica si se envió el formulario de inicio de sesión
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los valores del formulario
+    $correo = $_POST['correo'];
+    $contrasena = $_POST['contrasena'];
+
+    // Verificar las credenciales en la base de datos
+    $sql = "SELECT id, nombre, correo, contrasena, rol, estatus FROM usuarios WHERE correo = '$correo'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Usuario encontrado, verificar contraseña
+        $row = $result->fetch_assoc();
+        if (password_verify($contrasena, $row['contrasena'])) {
+            // Verificar estado del usuario
+            if ($row['estatus'] == 'ACTIVO') {
+                // Redireccionar según el rol
+                if ($row['rol'] == 'ADMIN') {
+                    header("Location: admin/index.php");
+                    exit();
+                } elseif ($row['rol'] == 'EMPLEADO') {
+                    header("Location: empleado/index.php");
+                    exit();
+                }
+            } else {
+                // Usuario inactivo, mostrar mensaje de alerta
+                $mensaje = "Ya no tienes acceso ya que no formas parte de nuestro equipo de trabajo.";
+            }
+        } else {
+            // Contraseña incorrecta, mostrar mensaje de error
+            $mensaje = "La contraseña es incorrecta.";
+        }
+    } else {
+        // Usuario no encontrado, mostrar mensaje de error
+        $mensaje = "El correo ingresado no está registrado.";
+    }
 }
 
 // Consulta SQL para obtener el nombre de la imagen de la tabla 'imagenes'
@@ -23,27 +56,6 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-<?php
-// Verificar si hay un mensaje de error o éxito en la URL
-if (isset($_GET['error'])) {
-    $error = $_GET['error'];
-    // Mostrar mensaje de error según el tipo de error
-    switch ($error) {
-        case 'incorrect_credentials':
-            $mensaje = "Correo electrónico o contraseña incorrectos.";
-            break;
-        case 'inactive_user':
-            $mensaje = "No tienes acceso porque ya no formas parte de nuestro equipo de trabajo.";
-            break;
-        case 'no_valid_role':
-            $mensaje = "No tienes un rol válido asignado.";
-            break;
-        default:
-            $mensaje = "Ha ocurrido un error.";
-            break;
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -116,23 +128,19 @@ if (isset($_GET['error'])) {
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Hola Bienvenido! <br> <h6>Inicia sesion con tu correo y contraseña</h6></h1> 
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Ingresa tu correo...">
+                                                placeholder="Ingresa tu correo..." name="correo">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Ingresa tu contraseña">
+                                                id="exampleInputPassword" placeholder="Ingresa tu contraseña" name="contrasena">
                                         </div>
+                                        <button type="submit" class="btn btn-facebook btn-user btn-block">Iniciar sesión</button>
                                     </form>
                                     <hr>
-                                    <div>
-                                        <a class="btn btn-facebook btn-user btn-block" href="verificar_usuario.php">Iniciar sesión </a>
-                                    </div>
-                                    <br>
-
                                     <div>
                                         <a class="btn btn-google btn-user btn-block" href="forgot-password.php">Olvidaste tu contraseña?</a>
                                     </div>

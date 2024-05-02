@@ -57,7 +57,7 @@ $conn->close();
             background-size: cover
         }
         .bg-password-image {
-                        background: url(imgs/<?php echo $nombre_imagen_recuperar; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
+            background: url(imgs/<?php echo $nombre_imagen_recuperar; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
             background-position: center;
             background-repeat: no-repeat;
             background-size: 380px 400px; /* Ajusta la imagen al tamaño específico */

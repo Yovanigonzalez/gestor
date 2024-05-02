@@ -156,7 +156,8 @@ function eliminarUsuario(id) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                        </div>
 
 
                     <!-- Content Row -->
