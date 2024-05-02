@@ -1,3 +1,29 @@
+<?php
+// Conexión a la base de datos (esto depende de tu configuración)
+
+include 'config/conexion.php';
+
+// Verifica la conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Consulta SQL para obtener el nombre de la imagen de la tabla 'imagenes'
+$sql = "SELECT nombre_imagen_login FROM imagenes";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        $nombre_imagen_login = $row["nombre_imagen_login"];
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,16 +55,15 @@
         /*Color de fondo*/
         .bg-gradient-primary {
             background-color: #4e73df;
-            background-image: linear-gradient(180deg, #4e73df 10%, #b1be22 100%);
             background-size: cover
         }
-
         .bg-login-image {
-            background: url(imgs/consultorio.png);
+            background: url(imgs/<?php echo $nombre_imagen_login; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
             background-position: center;
-            /*background-size: cover;*/
-            background-repeat: no-repeat; /* Evita la repetición de la imagen */
+            background-repeat: no-repeat;
+            background-size: 380px 400px; /* Ajusta la imagen al tamaño específico */
         }
+
 
     </style>
 
@@ -83,7 +108,7 @@
                                     </form>
                                     <hr>
                                     <div>
-                                        <a class="btn btn-google btn-user btn-block" href="forgot-password.html">Olvidaste tu contraseña?</a>
+                                        <a class="btn btn-google btn-user btn-block" href="forgot-password.php">Olvidaste tu contraseña?</a>
                                     </div>
                                     <br>
                                     <div>
