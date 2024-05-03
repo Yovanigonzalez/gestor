@@ -31,96 +31,92 @@ session_start();
 
 
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+<div class="container">
+    <!-- Content Row -->
+    <div class="row justify-content-center">
 
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Empleados Trabajando</h1>
+        <!-- Area Chart -->
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Gestión de Empleados</h6>
+                    <div class="dropdown no-arrow">
+                        <!-- Any dropdown content goes here -->
                     </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Gestión de Empleados</h6>
-                                <div class="dropdown no-arrow">
-
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <!-- Tabla para mostrar usuarios -->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <!--<th>Correo Electrónico</th>-->
-                                                <th>Rol</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tabla-usuarios">
-                                            <!-- Los usuarios se cargarán aquí dinámicamente -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!-- Tabla para mostrar usuarios -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <!--<th>Correo Electrónico</th>-->
+                                    <th>Rol</th>
+                                    <th>Accioenes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-usuarios">
+                                <!-- Los usuarios se cargarán aquí dinámicamente -->
                                             <script>
-    // Función para cargar los usuarios desde el servidor
-    function cargarUsuarios() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Cuando se recibe la respuesta del servidor
-                var usuarios = JSON.parse(this.responseText);
+// Función para cargar los usuarios desde el servidor
+function cargarUsuarios() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Cuando se recibe la respuesta del servidor
+            var usuarios = JSON.parse(this.responseText);
 
-                // Limpiar la tabla
-                var tablaUsuarios = document.getElementById("tabla-usuarios");
-                tablaUsuarios.innerHTML = "";
+            // Limpiar la tabla
+            var tablaUsuarios = document.getElementById("tabla-usuarios");
+            tablaUsuarios.innerHTML = "";
 
-                // Iterar sobre los usuarios y agregarlos a la tabla
-                for (var i = 0; i < usuarios.length; i++) {
-                    var usuario = usuarios[i];
-                    var fila = "<tr>";
-                    fila += "<td>" + usuario.nombre + "</td>";
-                    //fila += "<td>" + usuario.correo + "</td>";
-                    fila += "<td>" + usuario.rol + "</td>";
-                    fila += "<td>";
-                    fila += "<button class='btn btn-primary mr-1' onclick='editarUsuario(" + usuario.id + ")'>Editar</button>";
-                    fila += "<button class='btn btn-danger' onclick='confirmarEliminarUsuario(" + usuario.id + ")'>Eliminar</button>";
-                    fila += "</td>";
-                    fila += "</tr>";
-                    tablaUsuarios.innerHTML += fila;
-                }
+            // Iterar sobre los usuarios y agregarlos a la tabla
+            for (var i = 0; i < usuarios.length; i++) {
+                var usuario = usuarios[i];
+                var fila = "<tr>";
+                fila += "<td>" + usuario.nombre + "</td>";
+                //fila += "<td>" + usuario.correo + "</td>";
+                fila += "<td>" + usuario.rol + "</td>";
+                fila += "<td>" + (usuario.estatus == 1 ? "Activo" : "Inactivo") + "</td>"; // Columna de estado
+                fila += "<td>";
+                fila += "<button class='btn btn-primary mr-1 d-lg-none' onclick='editarUsuario(" + usuario.id + ")'><i class='fas fa-pencil-alt'></i></button>";
+                fila += "<button class='btn btn-danger d-lg-none' onclick='confirmarEliminarUsuario(" + usuario.id + ")'><i class='fas fa-trash-alt'></i></button>";
+                fila += "<button class='btn btn-primary mr-1 d-none d-lg-inline-block' onclick='editarUsuario(" + usuario.id + ")'>Modificar</button>";
+                fila += "<button class='btn btn-danger d-none d-lg-inline-block' onclick='confirmarEliminarUsuario(" + usuario.id + ")'>Eliminar</button>";
+                fila += "<button class='btn btn-success ml-1' onclick='cambiarEstadoUsuario(" + usuario.id + ")'>" + (usuario.estatus == 1 ? "Desactivar" : "Activar") + "</button>";
+                fila += "</td>";
+                fila += "</tr>";
+                tablaUsuarios.innerHTML += fila;
             }
-        };
-        xhttp.open("GET", "obtener_usuarios.php", true); // Reemplaza "obtener_usuarios.php" con la URL de tu script PHP para obtener usuarios
-        xhttp.send();
-    }
+        }
+    };
+    xhttp.open("GET", "obtener_usuarios.php", true); // Reemplaza "obtener_usuarios.php" con la URL de tu script PHP para obtener usuarios
+    xhttp.send();
+}
 
-    // Función para editar un usuario
+
 // Función para editar un usuario
 function editarUsuario(id) {
     // Redirigir a la página de edición con el ID del usuario como parámetro en la URL
     window.location.href = "editar_usuario.php?id=" + id;
 }
 
-
-    // Función para confirmar la eliminación de un usuario
-    function confirmarEliminarUsuario(id) {
-        // Mostrar mensaje de confirmación
-        var confirmacion = confirm("¿Estás seguro de que quieres eliminar este usuario?");
-        // Si el usuario confirma la eliminación
-        if (confirmacion) {
-            // Llamar a la función para eliminar el usuario
-            eliminarUsuario(id);
-        }
+// Función para confirmar la eliminación de un usuario
+function confirmarEliminarUsuario(id) {
+    // Mostrar mensaje de confirmación
+    var confirmacion = confirm("¿Estás seguro de que quieres eliminar este usuario?");
+    // Si el usuario confirma la eliminación
+    if (confirmacion) {
+        // Llamar a la función para eliminar el usuario
+        eliminarUsuario(id);
     }
+}
 
-// Función para eliminar un usuario
-function eliminarUsuario(id) {
+// Función para cambiar el estado de un usuario
+function cambiarEstadoUsuario(id, estado) {
     // Realizar una solicitud AJAX al servidor para cambiar el estado del usuario
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -130,24 +126,31 @@ function eliminarUsuario(id) {
             if (response.success) {
                 // Si la operación fue exitosa, mostrar un mensaje de éxito
                 alert(response.message);
-                // Recargar la lista de usuarios
-                cargarUsuarios();
+                // Recargar la página para reflejar el cambio
+                location.reload();
             } else {
                 // Si hubo un error, mostrar un mensaje de error
                 alert(response.message);
             }
         }
     };
-    xhttp.open("POST", "eliminar_usuario.php", true); // Reemplaza "eliminar_usuario.php" con la URL de tu script PHP para eliminar usuarios
+    xhttp.open("POST", "cambiar_estado_usuario.php", true); // Reemplaza "cambiar_estado_usuario.php" con la URL de tu script PHP para cambiar el estado de usuarios
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("id=" + id);
+    // Pasa el ID del usuario y el estado actual al script PHP
+    xhttp.send("id=" + id + "&estado=" + (estado == 1 ? 0 : 1));
 }
 
 
-    // Llamar a la función para cargar usuarios cuando se cargue la página
-    window.onload = function() {
-        cargarUsuarios();
-    };
+
+
+// Llamar a la función para cargar usuarios cuando se cargue la página
+window.onload = function() {
+    cargarUsuarios();
+};
+
+
+
+
 </script>
 
 
