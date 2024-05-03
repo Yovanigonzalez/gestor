@@ -58,6 +58,21 @@ session_start();
                     <!-- Tabla para mostrar usuarios -->
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="form-group">
+                                <input type="text" class="form-control" id="busquedaNombre"
+                                    placeholder="Buscar por nombre" onkeyup="buscarUsuario()">
+                            </div>
+
+                        <?php
+                        // Verificar si hay un mensaje en la sesión
+                        if (isset($_SESSION['mensaje']) && isset($_SESSION['mensaje_tipo'])) {
+                            $mensaje_tipo = $_SESSION['mensaje_tipo'];
+                            $mensaje = $_SESSION['mensaje'];
+                            echo "<div class=\"alert alert-$mensaje_tipo\">$mensaje</div>";
+                            unset($_SESSION['mensaje']); // Eliminar el mensaje para evitar que se muestre de nuevo en futuras visitas
+                            unset($_SESSION['mensaje_tipo']); // Eliminar el tipo de mensaje
+                        }
+                        ?>
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
