@@ -57,6 +57,34 @@ session_start();
                                 <!-- Tabla para mostrar usuarios -->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <div class="form-group">
+    <input type="text" class="form-control" id="busquedaNombre" placeholder="Buscar por nombre" onkeyup="buscarUsuario()">
+</div>
+
+<script>
+    // Función para buscar usuarios por nombre
+    function buscarUsuario() {
+        // Obtenemos el valor del campo de búsqueda
+        var input = document.getElementById("busquedaNombre");
+        var filtro = input.value.toUpperCase();
+        var tabla = document.getElementById("dataTable");
+        var filas = tabla.getElementsByTagName("tr");
+
+        // Iteramos sobre las filas de la tabla y ocultamos aquellas que no coincidan con la búsqueda
+        for (var i = 0; i < filas.length; i++) {
+            var celdaNombre = filas[i].getElementsByTagName("td")[0];
+            if (celdaNombre) {
+                var textoCelda = celdaNombre.textContent || celdaNombre.innerText;
+                if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
+                    filas[i].style.display = "";
+                } else {
+                    filas[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>

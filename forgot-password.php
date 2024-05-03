@@ -1,3 +1,5 @@
+<?php     session_start(); // Inicia la sesión ?>
+
 <?php
 // Conexión a la base de datos (esto depende de tu configuración)
 
@@ -60,7 +62,7 @@ $conn->close();
             background: url(imgs/<?php echo $nombre_imagen_recuperar; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 380px 400px; /* Ajusta la imagen al tamaño específico */
+            background-size: 420px 470px; /* Ajusta la imagen al tamaño específico 380px 400px*/
         }
 
 
@@ -87,20 +89,45 @@ $conn->close();
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Olvidaste tu contraseña?</h1>
-                                        <p class="mb-4">Para poder recuperar tu contraseña solo sera necesario que mandes tu correo electronico y se 
+                                        <p class="mb-4">Para poder recuperar tu contraseña solo sera necesario que mandes tu nombre completo y el correo electrónico y se 
                                             mandara la nueva contraseña a tu correo para poder acceder, esto puede demorar 24 horas!.
                                         </p>
                                     </div>
-                                    <form class="user">
+                                    <?php
+
+    // Verifica si hay un mensaje almacenado en la sesión
+    if (isset($_SESSION['mensaje'])) {
+        // Muestra el mensaje de éxito o error
+        echo '<div class="alert alert-success" role="alert">' . $_SESSION['mensaje'] . '</div>';
+
+        // Elimina el mensaje de la sesión para que no se muestre nuevamente
+        unset($_SESSION['mensaje']);
+    }
+    ?>
+                                    <form class="user" action="guardar_datos_recuperacion.php" method="post">
+                                        <h6>Nombre y Apellido:</h6>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Escribe tu contraseña...">
+                                            <input type="text" name="nombre" class="form-control form-control-user" id="exampleInputName" placeholder="Nombre" required>
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                        Recuperar contraseña!
-                                        </a>
+                                        
+                                        <h6>Correo:</h6>
+                                        <div class="form-group">
+                                            <input type="email" name="correo" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Recuperar contraseña
+                                        </button>
                                     </form>
+
+
+                                <script>
+                                    function formatName(input) {
+                                        // Convertir a mayúsculas
+                                        input.value = input.value.toUpperCase();
+                                        // Eliminar números y signos
+                                        input.value = input.value.replace(/[^A-Z\s]/g, '');
+                                    }
+                                </script>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="index.php">Regresar!</a>

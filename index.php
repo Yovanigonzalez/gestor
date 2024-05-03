@@ -94,7 +94,7 @@ $conn->close();
             background: url(imgs/<?php echo $nombre_imagen_login; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 380px 400px; /* Ajusta la imagen al tamaño específico */
+            background-size: 400px 450px; /* Ajusta la imagen al tamaño específico 380px 400px */
         }
 
 
@@ -126,20 +126,38 @@ $conn->close();
                                 <?php endif; ?>
 
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Hola Bienvenido! <br> <h6>Inicia sesion con tu correo y contraseña</h6></h1> 
+                                        <h1 class="h4 text-gray-900 mb-4">Hola Bienvenido! <br> <h6>Inicia sesión con tu correo y contraseña</h6></h1> 
                                     </div>
                                     <form class="user" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Ingresa tu correo..." name="correo">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Ingresa tu contraseña" name="contrasena">
-                                        </div>
-                                        <button type="submit" class="btn btn-facebook btn-user btn-block">Iniciar sesión</button>
-                                    </form>
+                                    <br>
+                                    <h6>Correo:</h6>    
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa tu correo..." name="correo" required>
+                                    </div>
+
+                                    <h6>Contraseña:</h6>    
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Ingresa tu contraseña" name="contrasena" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="checkbox" id="showPassword"> Mostrar contraseña
+                                    </div>
+
+                                    <button type="submit" class="btn btn-facebook btn-user btn-block">Iniciar sesión</button>
+                                </form>
+
+
+                                    <script>
+                                        document.getElementById('showPassword').addEventListener('change', function() {
+                                            var passwordField = document.getElementById('exampleInputPassword');
+                                            if (passwordField.type === 'password') {
+                                                passwordField.type = 'text';
+                                            } else {
+                                                passwordField.type = 'password';
+                                            }
+                                        });
+                                    </script>
                                     <hr>
                                     <div>
                                         <a class="btn btn-google btn-user btn-block" href="forgot-password.php">Olvidaste tu contraseña?</a>
