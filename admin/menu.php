@@ -145,52 +145,86 @@
 
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
+        <?php
+include '../config/conexion.php';
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter">3+</span>
-                </a>
-                <!-- Dropdown - Alerts -->
-                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header">
-                        Notificacion
-                    </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-warning">
-                                <i class="fas fa-exclamation-triangle text-white"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="small text-gray-500">December 2, 2019</div>
-                            Spending Alert: We've noticed unusually high spending for your account.
-                        </div>
-                    </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                </div>
-            </li>
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Consulta para obtener los datos de la tabla recuperacion
+$sql = "SELECT * FROM recuperacion";
+$result = $conn->query($sql);
+
+// Contar el número de notificaciones
+$num_notificaciones = $result->num_rows;
+
+// Cerrar conexión
+$conn->close();
+?>
+
+<!-- Nav Item - Alerts -->
+<li class="nav-item dropdown no-arrow mx-1">
+    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bell fa-fw"></i>
+        <!-- Counter - Alerts -->
+        <span class="badge badge-danger badge-counter">
+            <?php echo $num_notificaciones; ?>
+        </span>
+    </a>
+    <!-- Dropdown - Alerts -->
+    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="alertsDropdown">
+        <h6 class="dropdown-header">
+            Notificaciones
+        </h6>
+        <?php
+        // Verificar si se encontraron resultados
+        if ($num_notificaciones > 0) {
+            // Mostrar las notificaciones en una lista
+            while($row = $result->fetch_assoc()) {
+                echo '<a class="dropdown-item d-flex align-items-center" href="recuperacion_empleado.php?id=' . $row["id"] . '">';
+                echo '<div class="mr-3">';
+                echo '<div class="icon-circle bg-warning">';
+                echo '<i class="fas fa-exclamation-triangle text-white"></i>';
+                echo '</div>';
+                echo '</div>';
+                echo '<div>';
+                echo '<div class="small text-gray-500">Solicitud de recuperación de ' . $row["nombre"] . '</div>';
+                echo '</div>';
+                echo '</a>';
+            }
+        } else {
+            // Si no hay notificaciones
+            echo '<a class="dropdown-item d-flex align-items-center" href="#">';
+            echo '<div>No hay notificaciones.</div>';
+            echo '</a>';
+        }
+        ?>
+        <a class="dropdown-item text-center small text-gray-500" href="recuperaciones.php">Mostrar todas las notificaciones</a>
+    </div>
+</li>
 
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario</span>
                     <img class="img-profile rounded-circle"
                         src="../img/undraw_profile.svg">
                 </a>
+
+
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="userDropdown">
 
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
+                        Salir
                     </a>
                 </div>
             </li>
@@ -207,15 +241,15 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">¿Lista para salir?</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
     </div>
-    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
     <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="login.html">Logout</a>
+        <a class="btn btn-primary" href="logout.php">Salir</a>
     </div>
 </div>
 </div>

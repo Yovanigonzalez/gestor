@@ -44,6 +44,7 @@ session_start();
                     <div class="dropdown no-arrow">
                         <!-- Any dropdown content goes here -->
                     </div>
+<<<<<<< HEAD
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -60,6 +61,66 @@ session_start();
                             </thead>
                             <tbody id="tabla-usuarios">
                                 <!-- Los usuarios se cargarán aquí dinámicamente -->
+=======
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Gestión de Empleados</h6>
+                                <div class="dropdown no-arrow">
+
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <!-- Tabla para mostrar usuarios -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <div class="form-group">
+    <input type="text" class="form-control" id="busquedaNombre" placeholder="Buscar por nombre" onkeyup="buscarUsuario()">
+</div>
+
+<script>
+    // Función para buscar usuarios por nombre
+    function buscarUsuario() {
+        // Obtenemos el valor del campo de búsqueda
+        var input = document.getElementById("busquedaNombre");
+        var filtro = input.value.toUpperCase();
+        var tabla = document.getElementById("dataTable");
+        var filas = tabla.getElementsByTagName("tr");
+
+        // Iteramos sobre las filas de la tabla y ocultamos aquellas que no coincidan con la búsqueda
+        for (var i = 0; i < filas.length; i++) {
+            var celdaNombre = filas[i].getElementsByTagName("td")[0];
+            if (celdaNombre) {
+                var textoCelda = celdaNombre.textContent || celdaNombre.innerText;
+                if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
+                    filas[i].style.display = "";
+                } else {
+                    filas[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <!--<th>Correo Electrónico</th>-->
+                                                <th>Rol</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tabla-usuarios">
+                                            <!-- Los usuarios se cargarán aquí dinámicamente -->
+>>>>>>> 6e2c76ba1dcb6fda8b242d869bb0a052c199abcd
                                             <script>
 // Función para cargar los usuarios desde el servidor
 function cargarUsuarios() {
