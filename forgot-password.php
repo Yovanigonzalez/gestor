@@ -48,24 +48,25 @@ $conn->close();
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
-        .btn:not(:disabled):not(.disabled) {
-            cursor: pointer;
-            border-radius: 50px;
-        }
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+        border-radius: 50px;
+    }
 
-        /*Color de fondo*/
-        .bg-gradient-primary {
-            background-color: #4e73df;
-            background-size: cover
-        }
-        .bg-password-image {
-            background: url(imgs/<?php echo $nombre_imagen_recuperar; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 420px 470px; /* Ajusta la imagen al tamaño específico 380px 400px*/
-        }
+    /*Color de fondo*/
+    .bg-gradient-primary {
+        background-color: #4e73df;
+        background-size: cover
+    }
 
-
+    .bg-password-image {
+        background: url(imgs/<?php echo $nombre_imagen_recuperar; ?>);
+        /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 420px 470px;
+        /* Ajusta la imagen al tamaño específico 380px 400px*/
+    }
     </style>
 
     </style>
@@ -89,30 +90,36 @@ $conn->close();
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Olvidaste tu contraseña?</h1>
-                                        <p class="mb-4">Para poder recuperar tu contraseña solo sera necesario que mandes tu nombre completo y el correo electrónico y se 
-                                            mandara la nueva contraseña a tu correo para poder acceder, esto puede demorar 24 horas!.
+                                        <p class="mb-4">Para poder recuperar tu contraseña solo sera necesario que
+                                            mandes tu nombre completo y el correo electrónico y se
+                                            mandara la nueva contraseña a tu correo para poder acceder, esto puede
+                                            demorar 24 horas!.
                                         </p>
                                     </div>
                                     <?php
 
-    // Verifica si hay un mensaje almacenado en la sesión
-    if (isset($_SESSION['mensaje'])) {
-        // Muestra el mensaje de éxito o error
-        echo '<div class="alert alert-success" role="alert">' . $_SESSION['mensaje'] . '</div>';
+                                    // Verifica si hay un mensaje almacenado en la sesión
+                                    if (isset($_SESSION['mensaje'])) {
+                                        // Muestra el mensaje de éxito o error
+                                        echo '<div class="alert alert-success" role="alert">' . $_SESSION['mensaje'] . '</div>';
 
-        // Elimina el mensaje de la sesión para que no se muestre nuevamente
-        unset($_SESSION['mensaje']);
-    }
-    ?>
+                                        // Elimina el mensaje de la sesión para que no se muestre nuevamente
+                                        unset($_SESSION['mensaje']);
+                                    }
+                                    ?>
                                     <form class="user" action="guardar_datos_recuperacion.php" method="post">
                                         <h6>Nombre y Apellido:</h6>
                                         <div class="form-group">
-                                            <input type="text" name="nombre" class="form-control form-control-user" id="exampleInputName" placeholder="Nombre" required oninput="this.value = this.value.replace(/[^A-Za-zñÑáéíóúÁÉÍÓÚ\s]/g, ''); this.value = this.value.toUpperCase();">
+                                            <input type="text" name="nombre" class="form-control form-control-user"
+                                                id="exampleInputName" placeholder="Nombre" required
+                                                oninput="this.value = this.value.replace(/[^A-Za-zñÑáéíóúÁÉÍÓÚ\s]/g, ''); this.value = this.value.toUpperCase();">
                                         </div>
-                                        
+
                                         <h6>Correo:</h6>
                                         <div class="form-group">
-                                            <input type="email" name="correo" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
+                                            <input type="email" name="correo" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Correo electrónico" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Recuperar contraseña
@@ -120,14 +127,14 @@ $conn->close();
                                     </form>
 
 
-                                <script>
+                                    <script>
                                     function formatName(input) {
                                         // Convertir a mayúsculas
                                         input.value = input.value.toUpperCase();
                                         // Eliminar números y signos
                                         input.value = input.value.replace(/[^A-Z\s]/g, '');
                                     }
-                                </script>
+                                    </script>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="index.php">Regresar!</a>
