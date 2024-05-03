@@ -30,4 +30,3 @@ echo json_encode($response);
 // Cerrar la conexión a la base de datos
 $conn->close();
 ?>
-

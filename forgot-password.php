@@ -107,7 +107,7 @@ $conn->close();
                                     <form class="user" action="guardar_datos_recuperacion.php" method="post">
                                         <h6>Nombre y Apellido:</h6>
                                         <div class="form-group">
-                                            <input type="text" name="nombre" class="form-control form-control-user" id="exampleInputName" placeholder="Nombre" required>
+                                            <input type="text" name="nombre" class="form-control form-control-user" id="exampleInputName" placeholder="Nombre" required oninput="this.value = this.value.replace(/[^A-Za-zñÑáéíóúÁÉÍÓÚ\s]/g, ''); this.value = this.value.toUpperCase();">
                                         </div>
                                         
                                         <h6>Correo:</h6>

@@ -68,121 +68,115 @@ include '../config/conexion.php';
 
 
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Editar Empleado</h1>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Editar Empleado</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+
+
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Editar Empleado</h6>
+                    <div class="dropdown no-arrow">
+
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-
-
-                    </div> 
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Editar Empleado</h6>
-                                <div class="dropdown no-arrow">
-
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <!-- Tabla para mostrar usuarios -->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                                    <tbody id="tabla-usuarios">
-
-                                    <?php
-
-// Verificar si hay un mensaje almacenado en la sesión
-if (isset($_SESSION['mensaje'])) {
-    // Mostrar el mensaje de éxito o error
-    echo '<div class="alert alert-success" role="alert">' . $_SESSION['mensaje'] . '</div>';
-
-    // Eliminar el mensaje de la sesión para que no se muestre nuevamente
-    unset($_SESSION['mensaje']);
-}
-?>
-
-<form action="guardar_cambios.php" method="POST" class="mt-4">
-    <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Campo oculto para enviar el ID del usuario al guardar los cambios -->
-    
-    <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="<?php echo $usuario['nombre']; ?>" class="form-control">
-    </div>
-    
-    <div class="form-group">
-        <label for="correo">Correo Electrónico:</label>
-        <input type="email" id="correo" name="correo" value="<?php echo $usuario['correo']; ?>" class="form-control">
-    </div>
-    
-    <div class="form-group">
-        <label for="contrasena">Contraseña:</label>
-        <div class="input-group">
-            <input type="password" id="contrasena" name="contrasena" class="form-control">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="ver-contrasena"><i class="fas fa-eye"></i></button>
-            </div>
-        </div>
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-</form>
-
-<script>
-    document.getElementById('ver-contrasena').addEventListener('click', function() {
-        var inputContrasena = document.getElementById('contrasena');
-        if (inputContrasena.type === "password") {
-            inputContrasena.type = "text";
-        } else {
-            inputContrasena.type = "password";
-        }
-    });
-</script>
-
-
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-</div>
-
                 </div>
-                <!-- /.container-fluid -->
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!-- Tabla para mostrar usuarios -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
+                            <tbody id="tabla-usuarios">
+
+                                <?php
+
+                                // Verificar si hay un mensaje almacenado en la sesión
+                                if (isset($_SESSION['mensaje'])) {
+                                    // Mostrar el mensaje de éxito o error
+                                    echo '<div class="alert alert-success" role="alert">' . $_SESSION['mensaje'] . '</div>';
+
+                                    // Eliminar el mensaje de la sesión para que no se muestre nuevamente
+                                    unset($_SESSION['mensaje']);
+                                }
+                                ?>
+
+                                <form action="guardar_cambios.php" method="POST" class="mt-4">
+                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                    <!-- Campo oculto para enviar el ID del usuario al guardar los cambios -->
+
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" id="nombre" name="nombre"
+                                            value="<?php echo $usuario['nombre']; ?>" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="correo">Correo Electrónico:</label>
+                                        <input type="email" id="correo" name="correo"
+                                            value="<?php echo $usuario['correo']; ?>" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contrasena">Contraseña:</label>
+                                        <div class="input-group">
+                                            <input type="password" id="contrasena" name="contrasena"
+                                                class="form-control">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                    id="ver-contrasena"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </form>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-<?php include 'footer.php'; ?>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<?php include 'footer.php'; ?>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
 
 
 </body>
+
+<script src="js/editar_usuarios.js"></script>
 
 </html>

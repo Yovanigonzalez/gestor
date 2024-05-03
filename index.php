@@ -80,24 +80,25 @@ $conn->close();
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
-        .btn:not(:disabled):not(.disabled) {
-            cursor: pointer;
-            border-radius: 50px;
-        }
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+        border-radius: 50px;
+    }
 
-        /*Color de fondo*/
-        .bg-gradient-primary {
-            background-color: #4e73df;
-            background-size: cover
-        }
-        .bg-login-image {
-            background: url(imgs/<?php echo $nombre_imagen_login; ?>); /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 400px 450px; /* Ajusta la imagen al tamaño específico 380px 400px */
-        }
+    /*Color de fondo*/
+    .bg-gradient-primary {
+        background-color: #4e73df;
+        background-size: cover
+    }
 
-
+    .bg-login-image {
+        background: url(imgs/<?php echo $nombre_imagen_login; ?>);
+        /* Se obtiene la imagen desde la bd y la carpeta para visualizarla */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 400px 450px;
+        /* Ajusta la imagen al tamaño específico 380px 400px */
+    }
     </style>
 
 </head>
@@ -118,49 +119,58 @@ $conn->close();
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                <?php if (isset($mensaje)): ?>
-                                <!-- Mostrar mensaje de error -->
-                                <div class="alert alert-danger" role="alert">
-                                    <?php echo $mensaje; ?>
-                                </div>
-                                <?php endif; ?>
+                                    <?php if (isset($mensaje)): ?>
+                                    <!-- Mostrar mensaje de error -->
+                                    <div class="alert alert-danger" role="alert">
+                                        <?php echo $mensaje; ?>
+                                    </div>
+                                    <?php endif; ?>
 
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Hola Bienvenido! <br> <h6>Inicia sesión con tu correo y contraseña</h6></h1> 
+                                        <h1 class="h4 text-gray-900 mb-4">Hola Bienvenido! <br>
+                                            <h6>Inicia sesión con tu correo y contraseña</h6>
+                                        </h1>
                                     </div>
-                                    <form class="user" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                    <br>
-                                    <h6>Correo:</h6>    
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa tu correo..." name="correo" required>
-                                    </div>
+                                    <form class="user" method="post"
+                                        action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                        <br>
+                                        <h6>Correo:</h6>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Ingresa tu correo..." name="correo" required>
+                                        </div>
 
-                                    <h6>Contraseña:</h6>    
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Ingresa tu contraseña" name="contrasena" required>
-                                    </div>
+                                        <h6>Contraseña:</h6>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Ingresa tu contraseña"
+                                                name="contrasena" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <input type="checkbox" id="showPassword"> Mostrar contraseña
-                                    </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" id="showPassword"> Mostrar contraseña
+                                        </div>
 
-                                    <button type="submit" class="btn btn-facebook btn-user btn-block">Iniciar sesión</button>
-                                </form>
+                                        <button type="submit" class="btn btn-facebook btn-user btn-block">Iniciar
+                                            sesión</button>
+                                    </form>
 
 
                                     <script>
-                                        document.getElementById('showPassword').addEventListener('change', function() {
-                                            var passwordField = document.getElementById('exampleInputPassword');
-                                            if (passwordField.type === 'password') {
-                                                passwordField.type = 'text';
-                                            } else {
-                                                passwordField.type = 'password';
-                                            }
-                                        });
+                                    document.getElementById('showPassword').addEventListener('change', function() {
+                                        var passwordField = document.getElementById('exampleInputPassword');
+                                        if (passwordField.type === 'password') {
+                                            passwordField.type = 'text';
+                                        } else {
+                                            passwordField.type = 'password';
+                                        }
+                                    });
                                     </script>
                                     <hr>
                                     <div>
-                                        <a class="btn btn-google btn-user btn-block" href="forgot-password.php">Olvidaste tu contraseña?</a>
+                                        <a class="btn btn-google btn-user btn-block"
+                                            href="forgot-password.php">Olvidaste tu contraseña?</a>
                                     </div>
                                 </div>
                             </div>

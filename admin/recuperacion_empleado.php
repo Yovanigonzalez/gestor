@@ -59,75 +59,75 @@ $conn->close();
 
 
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Recuperación de clientes</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Recuperación de clientes</h1>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Datos de recuperacion de contraseña</h6>
+                    <div class="dropdown no-arrow">
+
                     </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Datos de recuperacion de contraseña</h6>
-                                <div class="dropdown no-arrow">
-
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <!-- Tabla para mostrar usuarios -->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <!-- Mostrar nombre y correo -->
-                                <p>EMPLEADO: <?php echo $nombre; ?></p>
-                                <p>CORREO: <?php echo $correo; ?></p>
-
-                                <!-- Botón para cambiar contraseña -->
-                                <a href="usuarios.php" class="btn btn-primary">Cambiar contraseña</a>
-
-
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        </div>
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-
-
-                        </div>
-                    </div>
-
                 </div>
-                <!-- /.container-fluid -->
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!-- Tabla para mostrar usuarios -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <!-- Mostrar nombre y correo -->
+                            <p>EMPLEADO: <?php echo $nombre; ?></p>
+                            <p>CORREO: <?php echo $correo; ?></p>
 
+                            <!-- Botón para cambiar contraseña -->
+                            <a href="usuarios.php" class="btn btn-primary">Cambiar contraseña</a>
+
+
+
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!-- End of Main Content -->
+        </div>
+    </div>
 
-            <!-- Footer -->
-<?php include 'footer.php'; ?>
-            <!-- End of Footer -->
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+
+
 
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<?php include 'footer.php'; ?>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
 
 
 </body>
