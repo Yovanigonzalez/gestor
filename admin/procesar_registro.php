@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Verifica si se han enviado datos mediante el método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
@@ -14,11 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $compania = $_POST['compania'];
 
     // Conectar a la base de datos (cambiar estos valores según tu configuración)
-include '../config/conexion.php';
+    include '../config/conexion.php';
 
     // Verificar la conexión
     if ($conn->connect_error) {
-        die("Error al conectar con la base de datos: " . $conn->connect_error);
+        $_SESSION['mensaje_tipo'] = 'error';
+        $_SESSION['mensaje'] = "Error al conectar con la base de datos: " . $conn->connect_error;
+        header("Location: empleado.php");
+        exit();
     }
 
     // Preparar la consulta SQL para insertar los datos en la tabla empleados
@@ -27,9 +32,15 @@ include '../config/conexion.php';
 
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {
-        echo "¡Registro exitoso!";
+        $_SESSION['mensaje_tipo'] = 'success';
+        $_SESSION['mensaje'] = "¡Registro exitoso!";
+        header("Location: empleado.php");
+        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $_SESSION['mensaje_tipo'] = 'error';
+        $_SESSION['mensaje'] = "Error: " . $sql . "<br>" . $conn->error;
+        header("Location: empleado.php");
+        exit();
     }
 
     // Cerrar la conexión
