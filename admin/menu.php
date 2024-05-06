@@ -71,6 +71,14 @@
                 </a>
             </li>
 
+                        <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+            <a class="nav-link" href="empleado.php">
+                <i class="fas fa-fw fa-users"></i>
+                    <span>Empleados</span>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

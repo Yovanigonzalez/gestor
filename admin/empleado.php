@@ -177,10 +177,22 @@ session_start(); // Inicia la sesión si aún no está iniciada
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="compania">COMPAÑÍA:</label>
-                                    <input type="text" class="form-control" id="compania" name="compania" maxlength="58"
-                                        oninput="convertirAMayusculas(this)" required>
-                                </div>
+                                  <label for="compania">COMPAÑÍA:</label>
+                                  <select class="form-control" id="companiaSelect" name="compania" required>
+                                      <option value="">SELECCIONA UNA COMPAÑIA</option>
+                                      <option value="COMPAÑIA 1">COMPAÑIA 1</option>
+                                      <option value="COMPAÑIA 2">COMPAÑIA 2</option>
+                                  </select>
+                                  <!-- Este campo de texto se ocultará y se actualizará con JavaScript -->
+                                  <input type="hidden" id="compania" name="compania" required>
+                              </div>
+                              <script>
+                                  document.getElementById("companiaSelect").addEventListener("change", function() {
+                                      var selectedOption = this.options[this.selectedIndex].value;
+                                      document.getElementById("compania").value = selectedOption;
+                                  });
+                              </script>
+
 
 
 
@@ -197,7 +209,7 @@ session_start(); // Inicia la sesión si aún no está iniciada
         </div>
     </div>
 
-
+ 
     <!-- Content Row -->
     <div class="row">
 

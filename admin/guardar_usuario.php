@@ -26,17 +26,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['mensaje_tipo'] = "danger";
         $_SESSION['mensaje'] = "El correo electrónico ya está registrado";
     } else {
-        // Prepara la consulta SQL para insertar los datos en la tabla correspondiente
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasena, rol, estatus, fecha_hora) 
-                VALUES ('$nombre', '$correo', '$contrasena', '$rol', '$estatus', NOW())";
+        // Verifica si el nombre de usuario ya está registrado
+        $sql_check_username = "SELECT nombre FROM usuarios WHERE nombre = '$nombre'";
+        $result_check_username = $conn->query($sql_check_username);
 
-        // Ejecuta la consulta
-        if ($conn->query($sql) === TRUE) {
-            $_SESSION['mensaje_tipo'] = "success";
-            $_SESSION['mensaje'] = "Registro guardado correctamente";
-        } else {
+        if ($result_check_username->num_rows > 0) {
             $_SESSION['mensaje_tipo'] = "danger";
-            $_SESSION['mensaje'] = "Error al guardar el registro: " . $conn->error;
+            $_SESSION['mensaje'] = "El nombre de usuario ya está registrado";
+        } else {
+            // Prepara la consulta SQL para insertar los datos en la tabla correspondiente
+            $sql = "INSERT INTO usuarios (nombre, correo, contrasena, rol, estatus, fecha_hora) 
+                    VALUES ('$nombre', '$correo', '$contrasena', '$rol', '$estatus', NOW())";
+
+            // Ejecuta la consulta
+            if ($conn->query($sql) === TRUE) {
+                $_SESSION['mensaje_tipo'] = "success";
+                $_SESSION['mensaje'] = "Registro guardado correctamente";
+            } else {
+                $_SESSION['mensaje_tipo'] = "danger";
+                $_SESSION['mensaje'] = "Error al guardar el registro: " . $conn->error;
+            }
         }
     }
 
@@ -52,3 +61,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
+
