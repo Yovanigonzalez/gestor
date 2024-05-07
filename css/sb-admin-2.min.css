@@ -7222,9 +7222,9 @@
      border-radius: .3rem !important
  }
 
- .rounded-circle {
+ /*.rounded-circle {
      border-radius: 50% !important
- }
+ }*/
 
  .rounded-pill {
      border-radius: 50rem !important
@@ -11360,8 +11360,8 @@
 
  .sidebar .nav-item .nav-link .img-profile,
  .topbar .nav-item .nav-link .img-profile {
-     height: 2rem;
-     width: 2rem
+     height: 23px;
+     width: 23px;
  }
 
  .topbar {

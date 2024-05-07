@@ -46,7 +46,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Marca de la barra lateral -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!--<i class="fas fa-laugh-wink"></i>-->
                 </div>
@@ -133,7 +133,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
             <!-- Encabezado -->
             <div class="sidebar-heading">
-                Interfaz
+                Interfaz / Datos
             </div>
 
 
@@ -144,15 +144,43 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Configuración</span>
                 </a>
+
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Configuración:</h6>
+                        <a class="collapse-item" href="datos.php">Editar Datos</a>
+
+                    <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-image.php">Editar imagen</a>
                     </div>
                 </div>
+                
             </li>
 
+            <!-- Separador -->
+            <hr class="sidebar-divider">
+
+                        <!-- Encabezado -->
+                        <div class="sidebar-heading">
+                        Cerrar sesión  
+            </div>
+
+
+            <!-- Elemento de navegación - Menú de colapso de utilidades -->
+            <li class="nav-item">
+            <a class="nav-link" href="logout.php" data-toggle="modal"
+                data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
+                Cerrar sesión 
+            </a>
+            </li>
+            <style>
+                .nav-link {
+                    font-size: 14px; /* o cualquier otro tamaño deseado */
+                }
+            </style>
+            
 
             <!-- Separador -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -262,7 +290,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                                     }
                                     ?>
                                 </span>
-                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../svg/perfil.png">
                             </a>
                         </li>
 
@@ -277,11 +305,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                                 </a>
 
 
-                                <a class="dropdown-item" href="logout.php" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
-                                </a>
+
 
                             </div>
                         </li>
