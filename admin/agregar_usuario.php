@@ -106,6 +106,15 @@ session_start();
                                             </div>
                                         </div>
 
+                                        <!-- Campo Usuario -->
+                                        <div class="form-group">
+                                            <label for="usuario">Usuario:</label>
+                                            <input type="text" placeholder="Ingresa el usuario..." class="form-control"
+                                                id="usuario" name="usuario" required
+                                                oninput="this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase();">
+                                        </div>
+
+
                                         <!-- Campo Rol -->
                                         <div class="form-group">
                                             <label for="rol">Rol:</label>

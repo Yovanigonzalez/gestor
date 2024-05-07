@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST["nombre"];
     $correo = $_POST["correo"];
     $contrasena = password_hash($_POST["contrasena"], PASSWORD_DEFAULT); // Encripta la contraseña
+    $usuario = $_POST["usuario"]; // Recupera el campo de entrada del usuario
     $rol = $_POST["rol"];
     $estatus = $_POST["estatus"];
 
@@ -35,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['mensaje'] = "El nombre de usuario ya está registrado";
         } else {
             // Prepara la consulta SQL para insertar los datos en la tabla correspondiente
-            $sql = "INSERT INTO usuarios (nombre, correo, contrasena, rol, estatus, fecha_hora) 
-                    VALUES ('$nombre', '$correo', '$contrasena', '$rol', '$estatus', NOW())";
+            $sql = "INSERT INTO usuarios (nombre, correo, contrasena, usuario, rol, estatus, fecha_hora) 
+                    VALUES ('$nombre', '$correo', '$contrasena', '$usuario', '$rol', '$estatus', NOW())";
 
             // Ejecuta la consulta
             if ($conn->query($sql) === TRUE) {
@@ -61,4 +62,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
-
