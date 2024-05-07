@@ -13,6 +13,9 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 }
 ?>
 
+<?php include 'check_connection.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
