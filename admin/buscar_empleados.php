@@ -15,7 +15,11 @@ if (isset($_GET['query']) && $_GET['query'] !== '') {
     // Crear un array para almacenar los resultados
     $empleados = array();
     while ($row = mysqli_fetch_assoc($result)) {
-        $empleados[] = $row;
+        // Almacenar tanto el ID como el nombre en el array
+        $empleados[] = array(
+            'id' => $row['id'],
+            'nombre' => $row['nombre']
+        );
     }
 
     // Devolver los resultados en formato JSON

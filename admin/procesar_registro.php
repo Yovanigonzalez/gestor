@@ -4,6 +4,7 @@ session_start();
 // Verifica si se han enviado datos mediante el método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
+    $id_empleado = $_POST['id_empleado']; // Nuevo campo añadido
     $nombre = $_POST['nombre'];
     $telefono = $_POST['telefono'];
     $categoria = $_POST['categoria'];
@@ -26,9 +27,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Verificar si ya existe un empleado con el mismo id_empleado
+    $sql_verificar = "SELECT * FROM empleados WHERE id_empleado = '$id_empleado'";
+    $result_verificar = $conn->query($sql_verificar);
+    
+    if ($result_verificar->num_rows > 0) {
+        // Ya existe un empleado con el mismo id_empleado
+        $_SESSION['mensaje_tipo'] = 'error';
+        $_SESSION['mensaje'] = "Error: El nombre del empleado ya fue registrado anteriormente.";
+        header("Location: empleado.php");
+        exit();
+    }
+
+    // Verificar si ya existe un empleado con el mismo nombre
+    $sql_verificar_nombre = "SELECT * FROM empleados WHERE nombre = '$nombre'";
+    $result_verificar_nombre = $conn->query($sql_verificar_nombre);
+    
+    if ($result_verificar_nombre->num_rows > 0) {
+        // Ya existe un empleado con el mismo nombre
+        $_SESSION['mensaje_tipo'] = 'error';
+        $_SESSION['mensaje'] = "Error: El nombre del empleado ya fue registrado anteriormente.";
+        header("Location: empleado.php");
+        exit();
+    }
+
     // Preparar la consulta SQL para insertar los datos en la tabla empleados
-    $sql = "INSERT INTO empleados (nombre, telefono, categoria, direccion, numero_interno, numero_externo, codigo_postal, ciudad, estado, compania)
-            VALUES ('$nombre', '$telefono', '$categoria', '$direccion', '$numero_interno', '$numero_externo', '$codigo_postal', '$ciudad', '$estado', '$compania')";
+    $sql = "INSERT INTO empleados (id_empleado, nombre, telefono, categoria, direccion, numero_interno, numero_externo, codigo_postal, ciudad, estado, compania)
+            VALUES ('$id_empleado', '$nombre', '$telefono', '$categoria', '$direccion', '$numero_interno', '$numero_externo', '$codigo_postal', '$ciudad', '$estado', '$compania')";
 
     // Ejecutar la consulta y verificar si fue exitosa
     if ($conn->query($sql) === TRUE) {
@@ -50,4 +75,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: formulario_de_registro.html");
     exit();
 }
+
 ?>
