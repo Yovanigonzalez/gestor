@@ -42,7 +42,7 @@
                     fila += "<td>";
                     fila += "<button class='btn btn-success' onclick='recontratarUsuario(" +
                         usuario.id +
-                        ")'>Recontratar</button>";
+                        ")'>RECONTRATAR</button>";
                     fila += "</td>";
                     fila += "</tr>";
                     tablaUsuarios.innerHTML += fila;

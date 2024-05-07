@@ -38,7 +38,7 @@ session_start();
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Agregar Empleados</h1>
+                        <h1 class="h3 mb-0 text-gray-800">PREREGISTRO</h1>
                     </div>
 
                     <div class="row">
@@ -53,7 +53,7 @@ session_start();
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Agregar Usuarios</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">AGREGAR EMPLEADOS</h6>
                                     <div class="dropdown no-arrow">
 
                                     </div>
@@ -76,8 +76,8 @@ session_start();
 
                                         <!-- Campo Nombre -->
                                         <div class="form-group">
-                                            <label for="nombre">Nombre:</label>
-                                            <input type="text" placeholder="Ingresa el nombre..." class="form-control"
+                                            <label for="nombre">NOMBRE COMPLETO:</label>
+                                            <input type="text" placeholder="INGRESA EL NOMBRE..." class="form-control"
                                                 id="nombre" name="nombre" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+"
                                                 title="Solo letras y espacios permitidos" required
                                                 oninput="this.value = this.value.replace(/[^A-Za-zñÑáéíóúÁÉÍÓÚ\s]/g, ''); this.value = this.value.toUpperCase();">
@@ -87,17 +87,17 @@ session_start();
 
                                         <!-- Campo Correo -->
                                         <div class="form-group">
-                                            <label for="correo">Correo:</label>
-                                            <input type="email" placeholder="Ingresa el correo..." class="form-control"
+                                            <label for="correo">CORREO:</label>
+                                            <input type="email" placeholder="INGRESA EL CORREO..." class="form-control"
                                                 id="correo" name="correo" required>
                                         </div>
 
                                         <!-- Campo Contraseña -->
                                         <div class="form-group">
-                                            <label for="contrasena">Contraseña:</label>
+                                            <label for="contrasena">CONTRASEÑA:</label>
                                             <div class="input-group">
                                                 <input type="password"
-                                                    placeholder="Ingresa la contraseña para el usuario..."
+                                                    placeholder="CONTRASEÑA..."
                                                     class="form-control" id="contrasena" name="contrasena" required>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-outline-secondary" type="button"
@@ -108,8 +108,8 @@ session_start();
 
                                         <!-- Campo Usuario -->
                                         <div class="form-group">
-                                            <label for="usuario">Usuario:</label>
-                                            <input type="text" placeholder="Ingresa el usuario..." class="form-control"
+                                            <label for="usuario">USUARIO:</label>
+                                            <input type="text" placeholder="USUARIO..." class="form-control"
                                                 id="usuario" name="usuario" required
                                                 oninput="this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase();">
                                         </div>
@@ -117,9 +117,9 @@ session_start();
 
                                         <!-- Campo Rol -->
                                         <div class="form-group">
-                                            <label for="rol">Rol:</label>
+                                            <label for="rol">ROL:</label>
                                             <select class="form-control" id="rol" name="rol" required>
-                                                <option>Selecciona el rol</option>
+                                                <option>SELECCIONA ROL</option>
                                                 <option value="ADMIN">Administrador</option>
                                                 <option value="EMPLEADO">Empleado</option>
                                                 <!--<option value="CLIENTE">Cliente</option>-->
@@ -128,15 +128,15 @@ session_start();
 
                                         <!-- Campo Estatus -->
                                         <div class="form-group">
-                                            <label for="estatus">Estatus:</label>
+                                            <label for="estatus">ESTATUS:</label>
                                             <select class="form-control" id="estatus" name="estatus" required>
-                                                <option value="ACTIVO">Activo</option>
-                                                <option value="INACTIVO">Inactivo</option>
+                                                <option value="ACTIVO">ACTIVO</option>
+                                                <option value="INACTIVO">INACTIVO</option>
                                             </select>
                                         </div>
 
                                         <!-- Botón de enviar -->
-                                        <button type="submit" class="btn btn-primary">Registrar</button>
+                                        <button type="submit" class="btn btn-primary">REGISTRAR</button>
                                     </form>
                                 </div>
                             </div>

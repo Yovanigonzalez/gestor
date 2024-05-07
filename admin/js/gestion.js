@@ -43,11 +43,11 @@ function cargarUsuarios() {
         fila +=
           "<button class='btn btn-primary mr-1' onclick='editarUsuario(" +
           usuario.id +
-          ")'>Editar</button>";
+          ")'>EDITAR</button>";
         fila +=
           "<button class='btn btn-danger' onclick='confirmarEliminarUsuario(" +
           usuario.id +
-          ")'>Eliminar</button>";
+          ")'>ELIMINAR</button>";
         fila += "</td>";
         fila += "</tr>";
         tablaUsuarios.innerHTML += fila;

@@ -20,10 +20,18 @@ if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['correo']) &&
     // Encriptar la contraseña antes de guardarla en la base de datos (recomendado)
     $contrasena_encriptada = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    // Actualizar los datos del usuario en la base de datos
-    $sql = "UPDATE usuarios SET nombre='$nombre', correo='$correo', contrasena='$contrasena_encriptada' WHERE id=$id";
+    // Actualizar los datos del usuario en la tabla 'usuarios'
+    $sql_usuario = "UPDATE usuarios SET nombre='$nombre', correo='$correo', contrasena='$contrasena_encriptada' WHERE id=$id";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql_usuario) === TRUE) {
+        // Actualizar los datos en la tabla 'compañia'
+        $sql_compania = "UPDATE compañia SET nombre='$nombre' WHERE id_empleado=$id";
+        $conn->query($sql_compania);
+
+        // Actualizar los datos en la tabla 'empleados'
+        $sql_empleados = "UPDATE empleados SET nombre='$nombre' WHERE id_empleado=$id";
+        $conn->query($sql_empleados);
+
         // Redireccionar al usuario a la página de edición con un mensaje de éxito
         $_SESSION['mensaje'] = "Los cambios se guardaron exitosamente.";
         header('Location: editar_usuario.php?id=' . $id);

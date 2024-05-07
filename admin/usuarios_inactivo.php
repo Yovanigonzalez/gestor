@@ -32,7 +32,7 @@ session_start();
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Empleados despedidos</h1>
+        <h1 class="h3 mb-0 text-gray-800">EMPLEADOS DESPEDIDOS</h1>
     </div>
 
 
@@ -41,7 +41,7 @@ session_start();
         <div class="col-xl-12 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Empleados Inactivos</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">EMPLEADOS INACTIVOS</h6>
                     <div class="dropdown no-arrow">
 
                     </div>
@@ -52,7 +52,7 @@ session_start();
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <div class="form-group">
                                 <input type="text" class="form-control" id="busquedaNombre"
-                                    placeholder="Buscar por nombre" onkeyup="buscarUsuario()">
+                                    placeholder="BUSCAR POR NOMBRE" onkeyup="buscarUsuario()">
                             </div>
 
                         <?php
@@ -67,10 +67,10 @@ session_start();
                         ?>
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>NOMBRE</th>
                                     <!--<th>Correo Electrónico</th>-->
-                                    <th>Rol</th>
-                                    <th>Acciones</th>
+                                    <th>ROL</th>
+                                    <th>ACCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tabla-usuarios">
