@@ -1,5 +1,23 @@
+<!-- Es una plantilla HTML para el panel de una aplicación web. Incluye varios elementos
+como un menú de navegación de la barra lateral, barra de navegación superior, menú desplegable de perfil de usuario, notificaciones
+menú desplegable y un modo de cierre de sesión. -->
+
+<?php
+session_start();
+// Resto del código de login.php
+
+if (empty($_SERVER['HTTP_REFERER'])) {
+    // El acceso se está realizando directamente desde la URL
+    header('Location: 404.php');
+    exit();
+}
+?>
+
+<?php include 'check_connection.php'; ?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -11,88 +29,166 @@
 
     <!--<title>SB Admin 2 - Dashboard</title>-->
 
-    <!-- Custom fonts for this template-->
+    <!-- Fuentes personalizadas para esta plantilla-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Estilos personalizados para esta plantilla-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+    <!-- Envoltura de la página -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+        <!-- Barra lateral -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <!-- Marca de la barra lateral -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!--<i class="fas fa-laugh-wink"></i>-->
                 </div>
-                <div class="sidebar-brand-text mx-3">Panel Usuario </div>
+                <div class="sidebar-brand-text mx-3">Panel Admin </div>
             </a>
 
-            <!-- Divider -->
+            <!-- Separador -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Elemento de navegación - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Empleados</span>
+                <a class="nav-link" href="inicio.php">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Separador -->
+            <hr class="sidebar-divider">
+            <!-- Encabezado -->
+            <div class="sidebar-heading">
+                Utilidades
+            </div>
+
+
+            <!-- Elemento de navegación - Agregar Usuario -->
+            <li class="nav-item">
+                <a class="nav-link" href="agregar_usuario.php">
+                    <i class="fas fa-fw fa-user-plus"></i>
+                    <span>Preregistro Empleado</span>
                 </a>
             </li>
 
-            <!-- Divider -->
+            <!-- Elemento de navegación - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="empleado.php">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Registro Empleados</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="compañia.php">
+                    <i class="fas fa-fw fa-building"></i>
+                    <span>Registro Compañia</span>
+                </a>
+            </li>
+
+            <!-- Separador -->
             <hr class="sidebar-divider">
-            <!-- Heading -->
+
+            <!-- Encabezado -->
             <div class="sidebar-heading">
-                Servicios
+                GESTION
             </div>
 
-            <!-- Nav Item - Usuarios -->
+            <!-- Elemento de navegación - Usuarios -->
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Clientes</span>
+                    <span>Usuarios</span>
                 </a>
             </li>
 
-            <!-- Nav Item - Agregar Usuario -->
+
+            <!-- Separador -->
+            <hr class="sidebar-divider">
+
+            <!-- Encabezado -->
+            <div class="sidebar-heading">
+                INACTIVIDAD
+            </div>
+
+            <!-- Elemento de navegación - Usuarios inactivos -->
             <li class="nav-item">
-                <a class="nav-link" href="agregar_usuario.php">
-                    <i class="fas fa-fw fa-building"></i>
-                    <span>Compañía</span>
+                <a class="nav-link" href="usuarios_inactivo.php">
+                    <i class="fas fa-fw fa-user-clock"></i>
+                    <span>Usuarios inactivos</span>
                 </a>
             </li>
 
+            <!-- Separador -->
+            <hr class="sidebar-divider">
+
+
+            <!-- Encabezado -->
+            <div class="sidebar-heading">
+                Interfaz / Datos
+            </div>
+
+
+            <!-- Elemento de navegación - Menú de colapso de utilidades -->
             <li class="nav-item">
-                <a class="nav-link" href="agregar_usuario.php">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Citas</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Configuración</span>
                 </a>
+
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Configuración:</h6>
+                        <a class="collapse-item" href="datos.php">Editar Datos</a>
+
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="utilities-image.php">Editar imagen</a>
+                    </div>
+                </div>
+                
             </li>
 
+            <!-- Separador -->
+            <hr class="sidebar-divider">
+
+                        <!-- Encabezado -->
+                        <div class="sidebar-heading">
+                        Cerrar sesión  
+            </div>
+
+
+            <!-- Elemento de navegación - Menú de colapso de utilidades -->
             <li class="nav-item">
-                <a class="nav-link" href="agregar_usuario.php">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span>Servicios</span>
-                </a>
+            <a class="nav-link" href="logout.php" data-toggle="modal"
+                data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
+                Cerrar sesión 
+            </a>
             </li>
+            <style>
+                .nav-link {
+                    font-size: 14px; /* o cualquier otro tamaño deseado */
+                }
+            </style>
+            
 
-
-
-
-            <!-- Divider -->
+            <!-- Separador -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
+            <!-- Barra lateral Toggle (Barra lateral) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -102,23 +198,23 @@
 
 
 
-        <!-- Content Wrapper -->
+        <!-- Envoltura de contenido -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
+            <!-- Contenido principal -->
             <div id="content">
 
-                <!-- Topbar -->
+                <!-- Barra superior -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
+                    <!-- Barra lateral Toggle (Barra superior) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- Navbar de la barra superior -->
 
-                    <!-- Topbar Navbar -->
+                    <!-- Navbar de la barra superior -->
                     <ul class="navbar-nav ml-auto">
                         <?php
                         include '../config/conexion.php';
@@ -139,17 +235,17 @@
                         $conn->close();
                         ?>
 
-                        <!-- Nav Item - Alerts -->
+                        <!-- Elemento de navegación - Alertas -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                <!-- Contador - Alertas -->
                                 <span class="badge badge-danger badge-counter">
                                     <?php echo $num_notificaciones; ?>
                                 </span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                            <!-- Menú desplegable - Alertas -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -184,40 +280,52 @@
                         </li>
 
 
-                        <!-- Nav Item - User Information -->
+                        <!-- Elemento de navegación - Información del usuario -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario</span>
-                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?php 
+                                    if (isset($_SESSION['usuario'])) {
+                                        echo $_SESSION['usuario']; // Mostrar el nombre de usuario si está definido en la sesión
+                                    } else {
+                                        echo 'Usuario'; // Mostrar un texto predeterminado si el nombre de usuario no está definido
+                                    }
+                                    ?>
+                                </span>
+                                <img class="img-profile rounded-circle" src="../svg/perfil.png">
                             </a>
+                        </li>
 
 
-                            <!-- Dropdown - User Information -->
+                            <!-- Menú desplegable - Información del usuario -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
 
-                                <a class="dropdown-item" href="logout.php" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                                <a class="dropdown-item" href="editar_datos.php">
+                                    <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Editar datos
                                 </a>
+
+
+
+
                             </div>
                         </li>
 
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+                <!-- Fin de la barra superior -->
 
 
-                <!-- Logout Modal-->
+                <!-- Modal de cierre de sesión-->
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">¿Lista para salir?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -225,7 +333,7 @@
                             <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para
                                 finalizar su sesión actual.</div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                 <a class="btn btn-primary" href="logout.php">Salir</a>
                             </div>
                         </div>
@@ -234,7 +342,7 @@
 
 
 
-                <!-- Scroll to Top Button-->
+                <!-- Botón de desplazamiento hacia arriba -->
                 <a class="scroll-to-top rounded" href="#page-top">
                     <i class="fas fa-angle-up"></i>
                 </a>
@@ -242,15 +350,15 @@
                 <script src="../vendor/jquery/jquery.min.js"></script>
                 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                <!-- Core plugin JavaScript-->
+                <!-- JavaScript del complemento principal -->
                 <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                <!-- Custom scripts for all pages-->
+                <!-- Scripts personalizados para todas las páginas-->
                 <script src="../js/sb-admin-2.min.js"></script>
 
-                <!-- Page level plugins -->
+                <!-- Plugins de nivel de página -->
                 <script src="../vendor/chart.js/Chart.min.js"></script>
 
-                <!-- Page level custom scripts -->
+                <!-- Scripts personalizados de nivel de página -->
                 <script src="../js/demo/chart-area-demo.js"></script>
                 <script src="../js/demo/chart-pie-demo.js"></script>
