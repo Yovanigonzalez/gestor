@@ -1,3 +1,7 @@
+<!-- Es una plantilla HTML para el panel de una aplicación web. Incluye varios elementos
+como un menú de navegación de la barra lateral, barra de navegación superior, menú desplegable de perfil de usuario, notificaciones
+menú desplegable y un modo de cierre de sesión. -->
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -55,13 +59,6 @@
                 Utilidades
             </div>
 
-            <!-- Elemento de navegación - Usuarios -->
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Usuarios</span>
-                </a>
-            </li>
 
             <!-- Elemento de navegación - Agregar Usuario -->
             <li class="nav-item">
@@ -71,10 +68,10 @@
                 </a>
             </li>
 
-                        <!-- Elemento de navegación - Dashboard -->
+            <!-- Elemento de navegación - Dashboard -->
             <li class="nav-item">
-            <a class="nav-link" href="empleado.php">
-                <i class="fas fa-fw fa-users"></i>
+                <a class="nav-link" href="empleado.php">
+                    <i class="fas fa-fw fa-users"></i>
                     <span>Registro Empleados</span>
                 </a>
             </li>
@@ -83,6 +80,22 @@
                 <a class="nav-link" href="compañia.php">
                     <i class="fas fa-fw fa-building"></i>
                     <span>Registro Compañia</span>
+                </a>
+            </li>
+
+            <!-- Separador -->
+            <hr class="sidebar-divider">
+
+            <!-- Encabezado -->
+            <div class="sidebar-heading">
+                GESTION
+            </div>
+
+            <!-- Elemento de navegación - Usuarios -->
+            <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Usuarios</span>
                 </a>
             </li>
 
