@@ -251,11 +251,18 @@ menú desplegable y un modo de cierre de sesión. -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
 
+                                <a class="dropdown-item" href="editar_datos.php">
+                                    <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Editar datos
+                                </a>
+
+
                                 <a class="dropdown-item" href="logout.php" data-toggle="modal"
                                     data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Salir
                                 </a>
+
                             </div>
                         </li>
 
