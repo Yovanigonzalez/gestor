@@ -137,7 +137,7 @@ menú desplegable y un modo de cierre de sesión. -->
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Configuración:</h6>
-                        <a class="collapse-item" href="utilities-image.php">Editar imagen de inicio de sesión</a>
+                        <a class="collapse-item" href="utilities-image.php">Editar imagen</a>
                     </div>
                 </div>
             </li>

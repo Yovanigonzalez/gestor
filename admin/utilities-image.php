@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agregar Usuarios</title>
+    <title>Cambio de imagen</title>
 
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -34,7 +34,7 @@
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Cambio imagen de login</h1>
+                        <h1 class="h3 mb-0 text-gray-800">CAMBIO DE IMAGEN </h1>
                     </div>
 
                     <div class="row">
@@ -49,7 +49,7 @@
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Cambio imagen de login</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">CAMBIO DE IMAGEN DE LOGIN</h6>
                                     <div class="dropdown no-arrow">
 
                                     </div>
@@ -72,13 +72,12 @@
 
                                         <!-- Campo de carga de imagen para "Imagen login" -->
                                         <div class="form-group">
-                                            <label for="imagen_login">Imagen login:</label>
+                                            <label for="imagen_login">IMAGEN PARA LA VISTA DE LOGIN:</label>
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="imagen_login"
                                                     name="imagen_login" data-browse="Imagen"
                                                     onchange="mostrarNombreImagen(this)">
-                                                <label class="custom-file-label" for="imagen_login">Selecciona
-                                                    imagen</label>
+                                                <label class="custom-file-label" for="imagen_login">SELECCIONA UNA IMAGEN:</label>
                                             </div>
                                             <div id="nombre_imagen_login"></div>
                                             <!-- Aquí se mostrará el nombre de la imagen seleccionada -->
@@ -86,20 +85,19 @@
 
                                         <!-- Campo de carga de imagen para "Imagen recuperar contraseña" -->
                                         <div class="form-group">
-                                            <label for="imagen_recuperar">Imagen recuperar contraseña:</label>
+                                            <label for="imagen_recuperar">IMAGEN PARA LA VISTA DE RECUPERAR CONTRASEÑA:</label>
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="imagen_recuperar"
                                                     name="imagen_recuperar" data-browse="Imagen"
                                                     onchange="mostrarNombreImagen(this)">
-                                                <label class="custom-file-label" for="imagen_recuperar">Selecciona
-                                                    imagen</label>
+                                                <label class="custom-file-label" for="imagen_recuperar">SELECCIONA UNA IMAGEN:</label>
                                             </div>
                                             <div id="nombre_imagen_recuperar"></div>
                                             <!-- Aquí se mostrará el nombre de la imagen seleccionada -->
                                         </div>
 
                                         <!-- Botón de enviar -->
-                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                        <button type="submit" class="btn btn-primary">GUARDAR CAMBIOS</button>
                                     </form>
 
 
