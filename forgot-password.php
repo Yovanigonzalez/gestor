@@ -25,6 +25,9 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
+<?php include 'check_connection.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

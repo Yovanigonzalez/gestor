@@ -1,6 +1,5 @@
 <?php
 // Conexión a la base de datos (esto depende de tu configuración)
-
 include 'config/conexion.php';
 
 // Verifica si se envió el formulario de inicio de sesión
@@ -10,26 +9,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena = $_POST['contrasena'];
 
     // Verificar las credenciales en la base de datos
-    $sql = "SELECT id, nombre, correo, contrasena, rol, estatus FROM usuarios WHERE correo = '$correo'";
-    $result = $conn->query($sql);
+    $sql = "SELECT id, nombre, correo, contrasena, usuario, rol FROM usuarios WHERE correo = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    // Verificar si se encontró el usuario
     if ($result->num_rows > 0) {
-        // Usuario encontrado, verificar contraseña
         $row = $result->fetch_assoc();
+        // Verificar si la contraseña es correcta
         if (password_verify($contrasena, $row['contrasena'])) {
-            // Verificar estado del usuario
-            if ($row['estatus'] == 'ACTIVO') {
-                // Redireccionar según el rol
-                if ($row['rol'] == 'ADMIN') {
-                    header("Location: admin/index.php");
-                    exit();
-                } elseif ($row['rol'] == 'EMPLEADO') {
-                    header("Location: empleado/index.php");
-                    exit();
-                }
-            } else {
-                // Usuario inactivo, mostrar mensaje de alerta
-                $mensaje = "Ya no tienes acceso ya que no formas parte de nuestro equipo de trabajo.";
+            // Contraseña correcta, iniciar sesión
+            session_start();
+            $_SESSION['usuario_id'] = $row['id'];
+            $_SESSION['nombre_usuario'] = $row['nombre'];
+            $_SESSION['usuario'] = $row['usuario'];
+            $_SESSION['rol'] = $row['rol'];
+
+            // Redireccionar según el rol
+            if ($row['rol'] == 'ADMIN') {
+                header("Location: admin/inicio.php");
+                exit();
+            } elseif ($row['rol'] == 'EMPLEADO') {
+                header("Location: empleado/inicio.php");
+                exit();
             }
         } else {
             // Contraseña incorrecta, mostrar mensaje de error
@@ -41,21 +45,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Consulta SQL para obtener el nombre de la imagen de la tabla 'imagenes'
-$sql = "SELECT nombre_imagen_login FROM imagenes";
-$result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // Output data of each row
-    while($row = $result->fetch_assoc()) {
-        $nombre_imagen_login = $row["nombre_imagen_login"];
+// Consulta SQL para obtener el nombre de la imagen de la tabla 'imagenes'
+$sql_imagen = "SELECT nombre_imagen_login FROM imagenes";
+$result_imagen = $conn->query($sql_imagen);
+
+// Verificar si se encontró la imagen
+if ($result_imagen->num_rows > 0) {
+    // Obtener el nombre de la imagen
+    while($row_imagen = $result_imagen->fetch_assoc()) {
+        $nombre_imagen_login = $row_imagen["nombre_imagen_login"];
     }
 } else {
     echo "0 results";
 }
+
+// Cerrar la conexión a la base de datos
 $conn->close();
 ?>
 
+<?php include 'check_connection.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

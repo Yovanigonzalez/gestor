@@ -49,7 +49,7 @@ session_start(); // Inicia la sesión si aún no está iniciada
 
                     <!-- Contenido de registro--->
                     <form action="actualizar_datos.php" method="POST" enctype="multipart/form-data">
-    <?php
+                        <?php
     // Verifica si hay un mensaje en la sesión
     if(isset($_SESSION['mensaje']) && isset($_SESSION['mensaje_tipo'])) {
         $mensaje_tipo = $_SESSION['mensaje_tipo'];
@@ -74,48 +74,50 @@ session_start(); // Inicia la sesión si aún no está iniciada
         unset($_SESSION['mensaje_tipo']); // Elimina el tipo de mensaje
     }
     ?>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="nombre_completo">Nombre Completo:</label>
-                <input type="text" class="form-control" id="nombre_completo" name="nombre_completo" autocomplete="off" required>
-            </div>
-            <!-- Campo oculto para almacenar el ID del empleado -->
-            <input type="hidden" id="id_empleado" name="id_empleado">
-            <div id="resultados"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombre_completo">Nombre Completo:</label>
+                                    <input type="text" class="form-control" id="nombre_completo" name="nombre_completo"
+                                        autocomplete="off" required>
+                                </div>
+                                <!-- Campo oculto para almacenar el ID del empleado -->
+                                <input type="hidden" id="id_empleado" name="id_empleado">
+                                <div id="resultados"></div>
 
-            <!-- Campo para Correo -->
-            <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="email" class="form-control" id="correo" name="correo" required>
-            </div>
+                                <!-- Campo para Correo -->
+                                <div class="form-group">
+                                    <label for="correo">Correo:</label>
+                                    <input type="email" class="form-control" id="correo" name="correo" required>
+                                </div>
 
-            <!-- Campo para Contraseña -->
-            <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
-                <input type="text" class="form-control" id="contraseña" name="contraseña" pattern="[0-9]{1,10}" maxlength="10" required>
-            </div>
+                                <!-- Campo para Contraseña -->
+                                <div class="form-group">
+                                    <label for="contraseña">Contraseña:</label>
+                                    <input type="text" class="form-control" id="contraseña" name="contraseña"
+                                        pattern="[0-9]{1,10}" maxlength="10" required>
+                                </div>
 
 
-        </div>
-        <div class="col-md-6">
-            <!-- Campo para Usuario -->
-                        <!-- Campo para Subir Foto -->
-                        <div class="form-group">
-                <label for="foto">Subir Foto:</label>
-                <input type="file" class="form-control-file" id="foto" name="foto">
-            </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Campo para Usuario -->
+                                <!-- Campo para Subir Foto -->
+                                <div class="form-group">
+                                    <label for="foto">Subir Foto:</label>
+                                    <input type="file" class="form-control-file" id="foto" name="foto">
+                                </div>
 
-            
-            <div class="form-group">
-                <label for="usuario">Usuario:</label>
-                <input type="text" class="form-control" id="usuario" name="usuario">
-            </div>
-        </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Modificar Datos</button>
-</form>
+                                <div class="form-group">
+                                    <label for="usuario">Usuario:</label>
+                                    <input type="text" class="form-control" id="usuario" name="usuario">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Modificar Datos</button>
+                    </form>
 
                 </div>
             </div>

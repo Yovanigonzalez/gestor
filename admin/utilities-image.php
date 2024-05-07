@@ -1,4 +1,3 @@
-<?php session_start(); // Iniciar sesión si no lo está ?>
 <?php include 'menu.php'; ?>
 
 <!DOCTYPE html>

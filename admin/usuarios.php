@@ -1,8 +1,3 @@
-<?php
-session_start();
-
-?>
-
 <?php include 'menu.php';?>
 
 <!DOCTYPE html>

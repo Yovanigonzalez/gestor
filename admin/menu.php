@@ -2,6 +2,17 @@
 como un menú de navegación de la barra lateral, barra de navegación superior, menú desplegable de perfil de usuario, notificaciones
 menú desplegable y un modo de cierre de sesión. -->
 
+<?php
+session_start();
+// Resto del código de login.php
+
+if (empty($_SERVER['HTTP_REFERER'])) {
+    // El acceso se está realizando directamente desde la URL
+    header('Location: 404.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -47,7 +58,7 @@ menú desplegable y un modo de cierre de sesión. -->
 
             <!-- Elemento de navegación - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="inicio.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -242,9 +253,18 @@ menú desplegable y un modo de cierre de sesión. -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?php 
+                                    if (isset($_SESSION['usuario'])) {
+                                        echo $_SESSION['usuario']; // Mostrar el nombre de usuario si está definido en la sesión
+                                    } else {
+                                        echo 'Usuario'; // Mostrar un texto predeterminado si el nombre de usuario no está definido
+                                    }
+                                    ?>
+                                </span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
+                        </li>
 
 
                             <!-- Menú desplegable - Información del usuario -->
