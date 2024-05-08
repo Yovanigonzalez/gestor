@@ -78,7 +78,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
             <li class="nav-item">
                 <a class="nav-link" href="agregar_usuario.php">
                     <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Preregistro Empleado</span>
+                    <span>Pre-registro Empleado</span>
                 </a>
             </li>
 
@@ -129,15 +129,6 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                 </a>
             </li>
 
-            <!-- Separador -->
-            <hr class="sidebar-divider">
-
-
-            <!-- Encabezado -->
-            <div class="sidebar-heading">
-                Interfaz / Datos
-            </div>
-
 
             <!-- Elemento de navegación - Menú de colapso de utilidades -->
             <li class="nav-item">
@@ -159,6 +150,17 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                 </div>
                 
             </li>
+
+            <!-- Elemento de navegación - Usuarios -->
+            <li class="nav-item">
+                <a class="nav-link" href="../pdf/db.pdf" download>
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Manual de Admin</span>
+                </a>
+            </li>
+
+
+
 
             <!-- Separador -->
             <hr class="sidebar-divider">

@@ -114,6 +114,14 @@ include '../config/conexion.php';
                                             value="<?php echo $usuario['nombre']; ?>" class="form-control">
                                     </div>
 
+                                    <script>
+                                    window.onload = function() {
+                                        document.getElementById('nombre').addEventListener('input', function() {
+                                            this.value = this.value.toUpperCase().replace(/[^A-Z\s]/g, '');
+                                        });
+                                    };
+                                    </script>
+
                                     <div class="form-group">
                                         <label for="correo">CORREO:</label>
                                         <input type="email" id="correo" name="correo"

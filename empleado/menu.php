@@ -76,90 +76,60 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
             <!-- Elemento de navegación - Agregar Usuario -->
             <li class="nav-item">
-                <a class="nav-link" href="agregar_usuario.php">
-                    <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Preregistro Empleado</span>
-                </a>
-            </li>
+    <a class="nav-link" href="agregar_usuario.php">
+        <i class="fas fa-fw fa-calendar-plus"></i>
+        <span>Citas</span>
+    </a>
+</li>
 
-            <!-- Elemento de navegación - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="empleado.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Registro Empleados</span>
-                </a>
-            </li>
+<!-- Elemento de navegación - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link" href="empleado.php">
+        <i class="fas fa-fw fa-user-plus"></i>
+        <span>Registro Cliente</span>
+    </a>
+</li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="compañia.php">
-                    <i class="fas fa-fw fa-building"></i>
-                    <span>Registro Compañia</span>
-                </a>
-            </li>
+<li class="nav-item">
+    <a class="nav-link" href="compañia.php">
+        <i class="fas fa-fw fa-address-card"></i>
+        <span>Registro Expedinte</span>
+    </a>
+</li>
 
-            <!-- Separador -->
-            <hr class="sidebar-divider">
+<li class="nav-item">
+    <a class="nav-link" href="servicios.php">
+        <i class="fas fa-fw fa-notes-medical"></i>
+        <span>Diagnostico</span>
+    </a>
+</li>
 
-            <!-- Encabezado -->
-            <div class="sidebar-heading">
-                GESTION
-            </div>
+<li class="nav-item">
+    <a class="nav-link" href="servicios.php">
+        <i class="fas fa-fw fa-hand-holding-medical"></i>
+        <span>Tratamiento</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="servicios.php">
+        <i class="fas fa-fw fa-user-edit"></i>
+        <span>Auto Registro</span>
+    </a>
+</li>
+
+
 
             <!-- Elemento de navegación - Usuarios -->
             <li class="nav-item">
-                <a class="nav-link" href="usuarios.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Usuarios</span>
+                <a class="nav-link" href="../pdf/db.pdf" download>
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Manual de Usuario</span>
                 </a>
             </li>
 
 
-            <!-- Separador -->
-            <hr class="sidebar-divider">
 
-            <!-- Encabezado -->
-            <div class="sidebar-heading">
-                INACTIVIDAD
-            </div>
-
-            <!-- Elemento de navegación - Usuarios inactivos -->
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios_inactivo.php">
-                    <i class="fas fa-fw fa-user-clock"></i>
-                    <span>Usuarios inactivos</span>
-                </a>
-            </li>
-
-            <!-- Separador -->
-            <hr class="sidebar-divider">
-
-
-            <!-- Encabezado -->
-            <div class="sidebar-heading">
-                Interfaz / Datos
-            </div>
-
-
-            <!-- Elemento de navegación - Menú de colapso de utilidades -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Configuración</span>
-                </a>
-
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Configuración:</h6>
-                        <a class="collapse-item" href="datos.php">Editar Datos</a>
-
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-image.php">Editar imagen</a>
-                    </div>
-                </div>
-                
-            </li>
 
             <!-- Separador -->
             <hr class="sidebar-divider">
@@ -216,68 +186,6 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
                     <!-- Navbar de la barra superior -->
                     <ul class="navbar-nav ml-auto">
-                        <?php
-                        include '../config/conexion.php';
-
-                        // Verificar conexión
-                        if ($conn->connect_error) {
-                            die("Error de conexión: " . $conn->connect_error);
-                        }
-
-                        // Consulta para obtener los datos de la tabla recuperacion
-                        $sql = "SELECT * FROM recuperacion";
-                        $result = $conn->query($sql);
-
-                        // Contar el número de notificaciones
-                        $num_notificaciones = $result->num_rows;
-
-                        // Cerrar conexión
-                        $conn->close();
-                        ?>
-
-                        <!-- Elemento de navegación - Alertas -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Contador - Alertas -->
-                                <span class="badge badge-danger badge-counter">
-                                    <?php echo $num_notificaciones; ?>
-                                </span>
-                            </a>
-                            <!-- Menú desplegable - Alertas -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Notificaciones
-                                </h6>
-                                <?php
-                                // Verificar si se encontraron resultados
-                                if ($num_notificaciones > 0) {
-                                    // Mostrar las notificaciones en una lista
-                                    while($row = $result->fetch_assoc()) {
-                                        echo '<a class="dropdown-item d-flex align-items-center" href="recuperacion_empleado.php?id=' . $row["id"] . '">';
-                                        echo '<div class="mr-3">';
-                                        echo '<div class="icon-circle bg-warning">';
-                                        echo '<i class="fas fa-exclamation-triangle text-white"></i>';
-                                        echo '</div>';
-                                        echo '</div>';
-                                        echo '<div>';
-                                        echo '<div class="small text-gray-500">Solicitud de recuperación de ' . $row["nombre"] . '</div>';
-                                        echo '</div>';
-                                        echo '</a>';
-                                    }
-                                } else {
-                                    // Si no hay notificaciones
-                                    echo '<a class="dropdown-item d-flex align-items-center" href="#">';
-                                    echo '<div>No hay notificaciones.</div>';
-                                    echo '</a>';
-                                }
-                                ?>
-                                <a class="dropdown-item text-center small text-gray-500"
-                                    href="recuperaciones.php">Mostrar todas las notificaciones</a>
-                            </div>
-                        </li>
 
 
                         <!-- Elemento de navegación - Información del usuario -->
