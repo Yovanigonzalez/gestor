@@ -104,24 +104,24 @@ include '../config/conexion.php';
                                 }
                                 ?>
 
-                                <form action="guardar_cambios.php" method="POST" class="mt-4">
+                                <form action="guardar_cambios_admin.php" method="POST" class="mt-4">
                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                                     <!-- Campo oculto para enviar el ID del usuario al guardar los cambios -->
 
                                     <div class="form-group">
-                                        <label for="nombre">Nombre:</label>
+                                        <label for="nombre">NOMBRE:</label>
                                         <input type="text" id="nombre" name="nombre"
                                             value="<?php echo $usuario['nombre']; ?>" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="correo">Correo Electrónico:</label>
+                                        <label for="correo">CORREO:</label>
                                         <input type="email" id="correo" name="correo"
                                             value="<?php echo $usuario['correo']; ?>" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="contrasena">Contraseña:</label>
+                                        <label for="contrasena">CONTRASEÑA:</label>
                                         <div class="input-group">
                                             <input type="password" id="contrasena" name="contrasena"
                                                 class="form-control">

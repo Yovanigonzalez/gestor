@@ -97,6 +97,13 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="servicios.php">
+                    <i class="fas fa-fw fa-h-square"></i>
+                    <span>Servicios</span>
+                </a>
+            </li>
+
             <!-- Separador -->
             <hr class="sidebar-divider">
 
@@ -113,14 +120,6 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                 </a>
             </li>
 
-
-            <!-- Separador -->
-            <hr class="sidebar-divider">
-
-            <!-- Encabezado -->
-            <div class="sidebar-heading">
-                INACTIVIDAD
-            </div>
 
             <!-- Elemento de navegación - Usuarios inactivos -->
             <li class="nav-item">
