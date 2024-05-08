@@ -76,6 +76,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="log/hospital.png">
+
 
     <title>Login</title>
 

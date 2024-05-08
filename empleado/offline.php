@@ -1,3 +1,5 @@
+<!-- El código proporcionado es un documento HTML que crea una página web sencilla para mostrar un mensaje cuando
+El usuario no está conectado a Internet. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

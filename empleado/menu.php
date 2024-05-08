@@ -35,6 +35,8 @@ if (empty($_SERVER['HTTP_REFERER'])) {
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+        <link rel="shortcut icon" type="image/x-icon" href="../log/hospital.png">
+
     <!-- Estilos personalizados para esta plantilla-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -74,6 +76,23 @@ if (empty($_SERVER['HTTP_REFERER'])) {
             </div>
 
 
+            <!-- Elemento de Auto-Registro -->
+            <li class="nav-item">
+    <a class="nav-link" href="auto-registro.php">
+        <i class="fas fa-fw fa-user-edit"></i>
+        <span>Auto Registro</span>
+    </a>
+</li>
+
+<!-- Elemento de navegación - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link" href="registro_citas.php">
+        <i class="fas fa-fw fa-user-plus"></i>
+        <span>Registro Cliente</span>
+    </a>
+</li>
+
+
             <!-- Elemento de navegación - Agregar Usuario -->
             <li class="nav-item">
     <a class="nav-link" href="agregar_usuario.php">
@@ -82,13 +101,6 @@ if (empty($_SERVER['HTTP_REFERER'])) {
     </a>
 </li>
 
-<!-- Elemento de navegación - Dashboard -->
-<li class="nav-item">
-    <a class="nav-link" href="empleado.php">
-        <i class="fas fa-fw fa-user-plus"></i>
-        <span>Registro Cliente</span>
-    </a>
-</li>
 
 <li class="nav-item">
     <a class="nav-link" href="compañia.php">
@@ -108,13 +120,6 @@ if (empty($_SERVER['HTTP_REFERER'])) {
     <a class="nav-link" href="servicios.php">
         <i class="fas fa-fw fa-hand-holding-medical"></i>
         <span>Tratamiento</span>
-    </a>
-</li>
-
-<li class="nav-item">
-    <a class="nav-link" href="servicios.php">
-        <i class="fas fa-fw fa-user-edit"></i>
-        <span>Auto Registro</span>
     </a>
 </li>
 
@@ -194,10 +199,10 @@ if (empty($_SERVER['HTTP_REFERER'])) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     <?php 
-                                    if (isset($_SESSION['usuario'])) {
-                                        echo $_SESSION['usuario']; // Mostrar el nombre de usuario si está definido en la sesión
+                                    if (isset($_SESSION['nombre_usuario'])) {
+                                        echo $_SESSION['nombre_usuario']; // Mostrar el nombre de usuario si está definido en la sesión
                                     } else {
-                                        echo 'Usuario'; // Mostrar un texto predeterminado si el nombre de usuario no está definido
+                                        echo 'Nombre'; // Mostrar un texto predeterminado si el nombre de usuario no está definido
                                     }
                                     ?>
                                 </span>
