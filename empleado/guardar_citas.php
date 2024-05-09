@@ -1,66 +1,67 @@
 <?php
-session_start(); // Inicia la sesión si no está iniciada
+// Iniciar sesión si no se ha iniciado ya
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conectar a la base de datos (cambia estos valores según tu configuración)
-    include '../config/conexion.php';
+    // Establecer las variables con los datos del formulario
+    $fechaHora = $_POST["fecha_hora"];
+    $doctor = $_POST["usuario"];
+    $nombreCliente = $_POST["nombre"];
+    $apPaterno = $_POST["ap_paterno"];
+    $apMaterno = $_POST["ap_materno"];
+    $idNombreSeleccionado = $_POST["id_nombre_seleccionado"];
+    $idServicio = $_POST["servicio"];
+    $fechaEstudio = $_POST["fecha_estudio"];
+    $razon = $_POST["razon"];
+    $numExpediente = $_POST["num_expediente"];
 
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Error de conexión: " . $conn->connect_error);
-    }
+    // Aquí debes realizar la validación de los datos recibidos, asegurándote de que no estén vacíos y cumpliendo con los criterios necesarios
 
-    // Recuperar los valores del formulario
-    $nombre = $_POST['nombre'];
-    $ap_paterno = $_POST['ap_paterno'];
-    $ap_materno = $_POST['ap_materno'];
-    $telefono = $_POST['telefono'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
-    $genero = $_POST['genero'];
-    $usuario = $_POST['usuario'];
-    $direccion = $_POST['direccion'];
-    $numero_interno = $_POST['numero_interno'];
-    $numero_externo = $_POST['numero_externo'];
-    $codigo_postal = $_POST['codigo_postal'];
-    $ciudad = $_POST['ciudad'];
-    $whatsapp = $_POST['whatsapp'];
-    $estatus = $_POST['estatus'];
-    $id_nombre_seleccionado = $_POST['id_nombre_seleccionado'];
+    // Incluir el archivo de conexión a la base de datos
+    include "../config/conexion.php";
 
-    // Verificar si el ID del nombre ya existe en la base de datos
-    $sql_verificacion = "SELECT * FROM citas WHERE id_nombre_seleccionado = '$id_nombre_seleccionado'";
-    $result_verificacion = $conn->query($sql_verificacion);
+    // Preparar la consulta SQL para insertar la cita en la base de datos
+    $sql = "INSERT INTO citas_clientes (fecha_hora, doctor, nombre_cliente, ap_paterno, ap_materno, id_nombre_seleccionado, id_servicio, fecha_estudio, razon, num_expediente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    if ($result_verificacion->num_rows > 0) {
-        // El ID del nombre ya existe, mostrar mensaje de error
-        $_SESSION['mensaje'] = "El cliente ya está registrado";
-        $_SESSION['mensaje_tipo'] = "error";
-    } else {
-        // Preparar la consulta SQL para insertar los datos en la tabla
-        $sql = "INSERT INTO citas (id_nombre_seleccionado, nombre, ap_paterno, ap_materno, telefono, fecha_nacimiento, genero, usuario, direccion, numero_interno, numero_externo, codigo_postal, ciudad, whatsapp, estatus)
-        VALUES ('$id_nombre_seleccionado', '$nombre', '$ap_paterno', '$ap_materno', '$telefono', '$fecha_nacimiento', '$genero', '$usuario', '$direccion', '$numero_interno', '$numero_externo', '$codigo_postal', '$ciudad', '$whatsapp', '$estatus')";
+    // Preparar la declaración
+    $stmt = $conn->prepare($sql);
 
-        if ($conn->query($sql) === TRUE) {
-            // Almacena el mensaje de éxito en una variable de sesión
-            $_SESSION['mensaje'] = "Cliente registrado exitosamente";
+    // Verificar si la preparación de la consulta fue exitosa
+    if ($stmt) {
+        // Vincular los parámetros de la consulta
+        $stmt->bind_param("ssssssisss", $fechaHora, $doctor, $nombreCliente, $apPaterno, $apMaterno, $idNombreSeleccionado, $idServicio, $fechaEstudio, $razon, $numExpediente);
+
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            // La cita se ha guardado correctamente
+            $_SESSION['mensaje'] = "La cita se ha registrado correctamente.";
             $_SESSION['mensaje_tipo'] = "success";
         } else {
-            // Almacena el mensaje de error en una variable de sesión
-            $_SESSION['mensaje'] = "Error al registrar el cliente: " . $conn->error;
+            // Error al ejecutar la consulta
+            $_SESSION['mensaje'] = "Ocurrió un error al guardar la cita: " . $stmt->error;
             $_SESSION['mensaje_tipo'] = "error";
         }
+
+        // Cerrar la declaración
+        $stmt->close();
+    } else {
+        // Error al preparar la consulta
+        $_SESSION['mensaje'] = "Ocurrió un error al guardar la cita: " . $conn->error;
+        $_SESSION['mensaje_tipo'] = "error";
     }
 
-    // Cerrar conexión
+    // Cerrar la conexión a la base de datos
     $conn->close();
+
+    // Redireccionar de vuelta al formulario de registro de citas
+    header("Location: citas.php");
+    exit();
 } else {
-    // Si no se ha enviado el formulario correctamente, redirigir a una página de error o realizar alguna otra acción
-    header("Location: 500.php");
+    // Si se accede a este script sin enviar el formulario, redireccionar de vuelta al formulario
+    header("Location: citas.php");
     exit();
 }
-
-// Redirigir de vuelta a registrar_citas.php
-header("Location: registro_citas.php");
-exit();
 ?>

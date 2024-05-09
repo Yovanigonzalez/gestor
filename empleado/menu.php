@@ -86,7 +86,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
 <!-- Elemento de navegación - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="registro_citas.php">
+    <a class="nav-link" href="registro_clientes.php">
         <i class="fas fa-fw fa-user-plus"></i>
         <span>Registro Cliente</span>
     </a>

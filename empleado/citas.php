@@ -50,7 +50,7 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
                     <div class="card-body">
 
                         <!-- Contenido de registro--->
-                        <form action="guardar_citas_cliente.php" method="POST" onsubmit="return validarFormulario()">
+                        <form action="guardar_citas.php" method="POST" onsubmit="return validarFormulario()">
                             <!-- Aquí van los otros elementos del formulario -->
 
                             <div class="row">
