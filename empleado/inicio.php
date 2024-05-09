@@ -34,22 +34,6 @@
     <div class="row">
 
         <!-- Tarjeta de ingresos (mensuales) -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Ingresos (Mensuales)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
 
@@ -63,7 +47,7 @@
                     }
 
                     // Consulta para obtener el total de empleados activos
-                    $sql = "SELECT COUNT(*) AS total_empleados FROM usuarios WHERE estatus = 'ACTIVO' AND rol = 'EMPLEADO'";
+                    $sql = "SELECT COUNT(*) AS total_empleados FROM auto_registro";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -78,33 +62,16 @@
                     ?>
 
                     <!-- Mostrar el total de empleados -->
+
+
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Total de Empleados</div>
+                                            Total de Clientes</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_empleados; ?></div>
-                                    </div>
-                                    <!-- Total de Empleados -->
-                                    <div class="col-auto">
-                                        <i class="fas fa-user-friends fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Total de Usuarios</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                     </div>
                                     <!-- Total de Usuarios -->
                                     <div class="col-auto">
@@ -118,22 +85,7 @@
 
 
                     <!-- Tarjeta de ingresos (anuales) -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Ingresos (Anuales)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <!-- Tarjeta de solicitudes pendientes -->
                     <div class="col-xl-3 col-md-6 mb-4">
@@ -164,23 +116,7 @@
                     </div>
 
                     <!-- Tarjeta de solicitudes pendientes -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Solicitudes Pendientes</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Fila de contenido -->
 

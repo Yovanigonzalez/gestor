@@ -109,10 +109,9 @@
                                         required>
                                         <option value="" disabled selected>SELECCIONA UNA CATEGORÍA</option>
                                         <option value="CONSULTA GENERAL">CONSULTA GENERAL</option>
-                                        <option value="PEDIATRÍA">PEDIATRÍA</option>
-                                        <option value="GINECOLOGÍA">GINECOLOGÍA</option>
-                                        <option value="ODONTOLOGÍA">ODONTOLOGÍA</option>
-                                        <option value="CIRUGÍA">CIRUGÍA</option>
+                                        <option value="EXAMEN DE SANGRE">EXAMEN DE SANGRE</option>
+                                        <option value="ECOGRAFÍA">ECOGRAFÍA</option>
+                                        <option value="RADIOGRAFÍA">RADIOGRAFÍA</option>
                                         <!-- Agrega más opciones según las categorías disponibles -->
                                     </select>
                                 </div>
@@ -141,9 +140,6 @@
                                     <select class="form-control" id="estado_servicio" name="estado_servicio" required>
                                         <option value="" disabled selected>SELECCIONA EL ESTADO DE SERVICIO</option>
                                         <option value="DISPONIBLE">DISPONIBLE</option>
-                                        <option value="EN PROCESO">EN PROCESO</option>
-                                        <option value="COMPLETADO">COMPLETADO</option>
-                                        <option value="CANCELADO">CANCELADO</option>
                                         <!-- Agrega más opciones según los estados disponibles -->
                                     </select>
                                 </div>
