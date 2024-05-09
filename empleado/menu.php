@@ -95,7 +95,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
             <!-- Elemento de navegación - Agregar Usuario -->
             <li class="nav-item">
-    <a class="nav-link" href="agregar_usuario.php">
+    <a class="nav-link" href="citas.php">
         <i class="fas fa-fw fa-calendar-plus"></i>
         <span>Citas</span>
     </a>

@@ -16,7 +16,7 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registro de cliente</title>
+    <title>Registro de Citas</title>
 
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -34,7 +34,7 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
     <div class="container-fluid">
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">REGISTRO CLIENTE</h1>
+            <h1 class="h3 mb-0 text-gray-800">REGISTRO DE CITAS</h1>
         </div>
 
         <div class="row">
@@ -42,7 +42,7 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
             <div class="col-xl-12 col-lg-7">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">REGISTRO CLIENTE</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">REGISTRO DE CITAS</h6>
                         <div class="dropdown no-arrow">
 
                         </div>
@@ -81,112 +81,40 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
                                     }
                                     ?>
 
-                                    <div class="form-group">
-                                        <label for="nombre">NOMBRE:</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre"
-                                            oninput="buscarNombre(this.value)" required>
-                                        <div id="resultado-busqueda"></div>
-                                        <!-- Aquí se mostrarán los resultados de la búsqueda en tiempo real -->
-                                    </div>
-
-                                    <!-- Campo oculto para almacenar el ID del nombre seleccionado -->
-                                    <input type="hidden" id="id_nombre_seleccionado" name="id_nombre_seleccionado">
-
-
 
 
                                     <div class="form-group">
-                                        <label for="ap_paterno">APELLIDO PATERNO:</label>
-                                        <input type="text" class="form-control apellido" id="ap_paterno"
-                                            name="ap_paterno" required readonly style="background-color: #eaecf4;">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ap_materno">APELLIDO MATERNO:</label>
-                                        <input type="text" class="form-control apellido" id="ap_materno"
-                                            name="ap_materno" required readonly style="background-color: #eaecf4;">
-                                    </div>
-
-
-
-                                    <div class="form-group">
-                                        <label for="telefono">TELÉFONO:</label>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono"
-                                            maxlength="10" required oninput="validarTelefono(this)">
-                                        <small id="telefonoHelp" class="form-text text-danger"></small>
+                                        <label for="fecha_hora">FECHA - HORA:</label>
+                                        <input type="text" class="form-control" id="fecha_hora" name="fecha_hora" readonly>
                                     </div>
 
 
                                     <div class="form-group">
-                                        <label for="fecha_nacimiento">FECHA DE NACIMIENTO:</label>
-                                        <input type="date" class="form-control" id="fecha_nacimiento"
-                                            name="fecha_nacimiento" required>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="genero">GENERO:</label>
+                                        <label for="genero">CAT ESTADO:</label>
                                         <select class="form-control" id="genero" name="genero" required>
                                             <option value="HOMBRE">HOMBRE</option>
                                             <option value="MUJER">MUJER</option>
                                         </select>
                                     </div>
 
-
-                                    <div class="form-group">
-                                        <label for="usuario">USUARIO:</label>
-                                        <input type="text" class="form-control" id="usuario" name="usuario"
-                                            oninput="this.value = this.value.toUpperCase()" required>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
 
-                                    <div class="form-group">
-                                        <label for="direccion">DIRECCIÓN:</label>
-                                        <input type="text" class="form-control" id="direccion" name="direccion"
-                                            oninput="convertirAMayusculas(this)" required>
+                                <div class="form-group">
+                                        <label for="usuario">CLIENTE:</label>
+                                        <input type="text" class="form-control" id="usuario" name="usuario"
+                                            oninput="this.value = this.value.toUpperCase()" required>
                                     </div>
 
-
-                                    <div class="form-group">
-                                        <label for="numero_interno">NÚMERO INTERNO:</label>
-                                        <input type="text" class="form-control" id="numero_interno"
-                                            name="numero_interno" pattern="[0-9]{1,10}" maxlength="10" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="numero_externo">NÚMERO EXTERNO:</label>
-                                        <input type="text" class="form-control" id="numero_externo"
-                                            name="numero_externo">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="codigo_postal">CODIGO POSTAL:</label>
-                                        <input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
-                                            maxlength="5" required oninput="validarCodigoPostal(this)">
-                                        <small id="codigoPostalHelp" class="form-text text-danger"></small>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="ciudad">CIUDAD:</label>
-                                        <input type="text" class="form-control" id="ciudad" name="ciudad" maxlength="58"
-                                            oninput="convertirAMayusculas(this)" required>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="whatsapp">WHATSAPP:</label>
-                                        <input type="text" class="form-control" id="whatsapp" name="whatsapp"
-                                            maxlength="10" required oninput="validarWhatsApp(this)">
-                                        <small id="whatsappHelp" class="form-text text-danger"></small>
-                                    </div>
-
-
-                                    <div class="form-group">
+                                <div class="form-group">
                                         <label for="estatus">ESTATUS:</label>
                                         <select class="form-control" id="estatus" name="estatus" required>
                                             <option value="ACTIVO">ACTIVO</option>
                                         </select>
                                     </div>
+
+
+
                                 </div>
                             </div>
                             <button id="btn-registrar" type="submit" class="btn btn-primary">REGISTRAR CLIENTE</button>
@@ -215,10 +143,27 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
     <?php include 'footer.php'; ?>
 
     <script src="js/compañia.js"></script>
-    <script src="js/empleado.js"></script>
-    <script src="js/citas.js"></script>
 
+    <script>
+                                        // Obtener la fecha y hora actual en el huso horario GMT-6
+                                        var fechaHoraActual = new Date();
+                                        var offset = -6; // GMT-6
+                                        var horaActual = fechaHoraActual.getUTCHours() + offset;
+                                        if (horaActual < 0) {
+                                            horaActual += 24; // Si es menor que 0, se suma 24 horas para obtener la hora correcta
+                                        }
 
+                                        // Obtener las horas y minutos en formato de 6 horas
+                                        var horas = horaActual % 12 || 12; // Si es 0, se cambia a 12
+                                        var minutos = fechaHoraActual.getUTCMinutes();
+                                        var ampm = horaActual < 12 ? 'AM' : 'PM';
+
+                                        // Formatear la fecha y hora en el formato deseado (YYYY-MM-DDThh:mm AM/PM)
+                                        var fechaHoraFormateada = fechaHoraActual.toISOString().slice(0, 10) + " -- " + horas.toString().padStart(2, '0') + ":" + minutos.toString().padStart(2, '0') + " " + ampm;
+
+                                        // Establecer el valor en el campo de entrada
+                                        document.getElementById("fecha_hora").value = fechaHoraFormateada;
+                                    </script>
     <!-- End of Footer -->
     </div>
 

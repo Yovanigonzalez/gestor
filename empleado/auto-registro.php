@@ -66,42 +66,42 @@
 
             <div class="form-group">
                 <label for="nombre">NOMBRE:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
             <div class="form-group">
                 <label for="ap_paterno">APELLIDO PATERNO:</label>
-                <input type="text" class="form-control" id="ap_paterno" name="ap_paterno" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="ap_paterno" name="ap_paterno" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
             <div class="form-group">
                 <label for="ap_materno">APELLIDO MATERNO:</label>
-                <input type="text" class="form-control" id="ap_materno" name="ap_materno" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="ap_materno" name="ap_materno" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
             <div class="form-group">
                 <label for="estatura">ESTATURA:</label>
-                <input type="text" class="form-control" id="estatura" name="estatura" required>
+                <input type="text" class="form-control" id="estatura" name="estatura" oninput="convertirAMayusculasYFiltrar(this)" pattern="\d+(\.\d+)?" title="Número entero o decimal" required>
             </div>
-            <div class="form-group">
+                        <div class="form-group">
                 <label for="alergias">ALERGIAS:</label>
-                <input type="text" class="form-control" id="alergias" name="alergias" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="alergias" name="alergias" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
         </div>
         <div class="col-md-6">
-        <div class="form-group">
+            <div class="form-group">
                 <label for="enfermedades">ENFERMEDADES CRONICAS:</label>
-                <input type="text" class="form-control" id="enfermedades" name="enfermedades" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="enfermedades" name="enfermedades" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
 
             <div class="form-group">
                 <label for="fracturas">FRACTURAS:</label>
-                <input type="text" class="form-control" id="fracturas" name="fracturas" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="fracturas" name="fracturas" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
             <div class="form-group">
                 <label for="antecedentes">ANTECEDENTES FAMILIARES:</label>
-                <input type="text" class="form-control" id="antecedentes" name="antecedentes" oninput="this.value = this.value.toUpperCase()" required>
+                <input type="text" class="form-control" id="antecedentes" name="antecedentes" oninput="convertirAMayusculasYFiltrar(this)" required>
             </div>
             <div class="form-group">
                 <label for="otros">OTROS:</label>
-                <input type="text" class="form-control" id="otros" name="otros" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" class="form-control" id="otros" name="otros" oninput="convertirAMayusculasYFiltrar(this)">
             </div>
         </div>
     </div>
@@ -131,6 +131,18 @@
 <?php include 'footer.php'; ?>
 
 <script src="js/compañia.js"></script>
+
+<script>
+    // Función para convertir a mayúsculas y filtrar caracteres no deseados
+    // Función para convertir a mayúsculas y filtrar caracteres no deseados
+    function convertirAMayusculasYFiltrar(input) {
+        var valor = input.value.toUpperCase();
+        if (input.id !== "estatura") {
+            valor = valor.replace(/[^A-Z\s]/g, '');
+        }
+        input.value = valor;
+    }
+</script>
 
 
 <!-- End of Footer -->

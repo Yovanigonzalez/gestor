@@ -1,0 +1,27 @@
+    /* Estilo predeterminado para los campos */
+    input.apellido {
+        background-color: #eaecf4;
+    }
+
+    /* Estilo para deshabilitar selección de texto y eventos de ratón */
+    input.apellido {
+        user-select: none;
+        pointer-events: none;
+    }
+
+        /* Estilo para los botones de resultados de búsqueda */
+        .btn-resultados {
+            color: black;
+            /* Cambiar el color del texto a negro */
+            text-decoration: none;
+            /* Eliminar subrayado (estilo de enlace) */
+            cursor: default;
+            /* Cambiar el cursor al predeterminado para indicar que no es un enlace */
+            background-color: transparent;
+            /* Asegurarse de que el fondo sea transparente */
+            border: none;
+            /* Eliminar bordes */
+            padding: 0;
+            /* Eliminar relleno */
+        }
+    
