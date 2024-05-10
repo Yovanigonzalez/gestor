@@ -33,8 +33,8 @@ if (isset($_POST['searchTerm'])) {
             echo "<td>".$row["numero_expediente"]."</td>";
             echo "<td>".$row["precio"]."</td>";
             echo "<td>".$row["duracion"]."</td>";
-            echo "<td><a href='diagnostico.php?expediente=".$row["numero_expediente"]."&servicio=".$row["servicio_nombre"]."&nombre_cliente=".$row["nombre_cliente"]."&ap_paterno=".$row["ap_paterno"]."&ap_materno=".$row["ap_materno"]."&razon=".$row["razon"]."&id_nombre_seleccionado=".$row["id_nombre_seleccionado"]."'>Diagnóstico</a></td>";
-            echo "<td style='text-align: center;'><a href='descargar_expediente.php?expediente=".$row["numero_expediente"]."&servicio=".$row["servicio_nombre"]."'><img src='../imgs/pdf.png' alt='Descargar' width='20' height='20'></a></td>";
+            echo "<td style='text-align: center;'><a href='diagnostico.php?expediente=".$row["numero_expediente"]."&servicio=".$row["servicio_nombre"]."&nombre_cliente=".$row["nombre_cliente"]."&ap_paterno=".$row["ap_paterno"]."&ap_materno=".$row["ap_materno"]."&razon=".$row["razon"]."&id_nombre_seleccionado=".$row["id_nombre_seleccionado"]."'><img src='../imgs/diagnostico.png' alt='Diagnóstico' width='30' height='30'></a></td>";
+            echo "<td style='text-align: center;'><a href='descargar_expediente.php?expediente=".$row["numero_expediente"]."&servicio=".$row["servicio_nombre"]."'><img src='../imgs/pdf.png' alt='Descargar' width='30' height='30'></a></td>";
             echo "</tr>";
         }
         echo "</tbody></table>";

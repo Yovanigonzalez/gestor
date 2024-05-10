@@ -1,33 +1,3 @@
-// Función para seleccionar un resultado y llenar los campos
-function seleccionarResultado(
-  id,
-  nombre,
-  ap_paterno,
-  ap_materno,
-  numero_expediente
-) {
-  document.getElementById("nombre").value = nombre;
-  document.getElementById("ap_paterno").value = ap_paterno;
-  document.getElementById("ap_materno").value = ap_materno;
-  document.getElementById("id_nombre_seleccionado").value = id;
-
-  // Actualizar el valor del campo NUMERO DE EXPEDIENTE
-  document.getElementById("expediente").value = numero_expediente;
-
-  // Limpiar el contenido del elemento de resultados de búsqueda
-  document.getElementById("resultado-busqueda").innerHTML = "";
-
-  // Habilitar campos de apellido paterno y apellido materno y establecer sus valores
-  document.getElementById("ap_paterno").disabled = false;
-  document.getElementById("ap_materno").disabled = false;
-  document.getElementById("ap_paterno").style.backgroundColor = "#eaecf4";
-  document.getElementById("ap_materno").style.backgroundColor = "#eaecf4";
-
-  // Activar el evento de clic en el botón "Registrar cliente"
-  document.getElementById("btn-registrar").click();
-}
-
-// Función para manejar la búsqueda en tiempo real
 function buscarNombre(str) {
   if (str.length == 0) {
     // Si no hay entrada, limpiar resultados y deshabilitar campos
@@ -58,6 +28,38 @@ function buscarNombre(str) {
     xmlhttp.send();
   }
 }
+
+// Función para seleccionar un resultado y llenar los campos
+function seleccionarResultado(
+  id,
+  nombre,
+  ap_paterno,
+  ap_materno,
+  numero_expediente,
+  id_nombre_seleccionado
+) {
+  // Llenar los campos con los datos del resultado seleccionado
+  document.getElementById("nombre").value = nombre;
+  document.getElementById("ap_paterno").value = ap_paterno;
+  document.getElementById("ap_materno").value = ap_materno;
+  document.getElementById("expediente").value = numero_expediente;
+
+  // Establecer el valor de id_nombre_seleccionado en el campo oculto
+  document.getElementById("id_nombre_seleccionado").value = id_nombre_seleccionado;
+
+  // Limpiar el contenido del elemento de resultados de búsqueda
+  document.getElementById("resultado-busqueda").innerHTML = "";
+
+  // Habilitar campos de apellido paterno y apellido materno y establecer sus valores
+  document.getElementById("ap_paterno").disabled = false;
+  document.getElementById("ap_materno").disabled = false;
+  document.getElementById("ap_paterno").style.backgroundColor = "#eaecf4";
+  document.getElementById("ap_materno").style.backgroundColor = "#eaecf4";
+
+  // Activar el evento de clic en el botón "Registrar cliente"
+  document.getElementById("btn-registrar").click();
+}
+
 
 // Función para seleccionar un resultado y llenar los campos
 // Función para seleccionar un resultado y llenar los campos

@@ -109,12 +109,12 @@ if (empty($_SERVER['HTTP_REFERER'])) {
     </a>
 </li>
 
-<li class="nav-item">
+<!--<li class="nav-item">
     <a class="nav-link" href="diagnostico.php">
         <i class="fas fa-fw fa-notes-medical"></i>
         <span>Diagnostico</span>
     </a>
-</li>
+</li>-->
 
 <li class="nav-item">
     <a class="nav-link" href="tratamiento.php">
