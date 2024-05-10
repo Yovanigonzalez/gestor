@@ -1,0 +1,53 @@
+# Gestión de Servicios Médicos
+
+Este proyecto es un sistema de gestión de servicios médicos diseñado para ayudar en la administración de información relacionada con pacientes, citas, historias clínicas, etc.
+
+## Tabla de Contenidos
+
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Contribución](#contribución)
+- [Créditos](#créditos)
+- [Contacto](#contacto)
+- [Estado del Proyecto](#estado-del-proyecto)
+
+## Instalación
+
+Para instalar este proyecto, sigue los siguientes pasos:
+
+1. Clona este repositorio en tu máquina local.
+2. Abre el archivo `index.php` en tu navegador web.
+3. El sistema de gestión de servicios médicos debería cargarse y estar listo para usar.
+
+## Uso
+
+Este sistema permite gestionar información relacionada con pacientes, citas, historias clínicas, etc. A continuación, se muestran algunas funcionalidades principales:
+
+- Registro de pacientes.
+- Gestión de citas médicas.
+- Historias clínicas electrónicas.
+- Generación de informes médicos.
+
+## Contribución
+
+Actualmente el proyecto está terminado, pero si deseas contribuir con sugerencias o mejoras futuras, sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Realiza tus cambios en una nueva rama.
+3. Envía una solicitud de extracción con una descripción clara de tus cambios.
+
+## Créditos
+
+Este proyecto utiliza las siguientes tecnologías:
+
+- Bootstrap: [Sitio web oficial](https://getbootstrap.com/)
+- jQuery: [Sitio web oficial](https://jquery.com/)
+
+## Contacto
+
+Si tienes alguna pregunta o sugerencia, puedes contactarme a través del siguiente número de teléfono: 000-123-9876.
+
+## Estado del Proyecto
+
+El proyecto está terminado y funcional. No se esperan nuevas actualizaciones en el futuro próximo.
+
