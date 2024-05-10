@@ -1,1 +1,1 @@
-https://github.com/tecnickcom/TCPDF.git 
+git clone https://github.com/tecnickcom/TCPDF.git 
