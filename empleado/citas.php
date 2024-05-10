@@ -83,12 +83,18 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
                                     ?>
 
 
+                                <div class="form-group">
+                                    <label for="fecha_hora">FECHA - HORA:</label>
+                                    <input type="text" class="form-control" id="fecha_hora" name="fecha_hora" readonly>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="fecha_hora">FECHA - HORA:</label>
-                                        <input type="text" class="form-control" id="fecha_hora" name="fecha_hora"
-                                            readonly>
-                                    </div>
+                                <script>
+                                    // Obtener la fecha y hora actual
+                                    var fechaHoraActual = new Date();
+                                    var fechaHoraFormateada = fechaHoraActual.toISOString().slice(0, 19).replace('T', ' '); // Formato: YYYY-MM-DD HH:MM:SS
+                                    document.getElementById("fecha_hora").value = fechaHoraFormateada;
+                                </script>
+
 
                                     <?php
                                     // Obtener el nombre de usuario de la sesión
