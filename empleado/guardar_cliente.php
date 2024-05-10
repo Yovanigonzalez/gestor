@@ -11,37 +11,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    // Recuperar los valores del formulario
-    $nombre = $_POST['nombre'];
-    $ap_paterno = $_POST['ap_paterno'];
-    $ap_materno = $_POST['ap_materno'];
-    $telefono = $_POST['telefono'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
-    $genero = $_POST['genero'];
-    $usuario = $_POST['usuario'];
-    $direccion = $_POST['direccion'];
-    $numero_interno = $_POST['numero_interno'];
-    $numero_externo = $_POST['numero_externo'];
-    $codigo_postal = $_POST['codigo_postal'];
-    $ciudad = $_POST['ciudad'];
-    $whatsapp = $_POST['whatsapp'];
-    $estatus = $_POST['estatus'];
+    // Recuperar el valor de id_nombre_seleccionado enviado por el formulario
     $id_nombre_seleccionado = $_POST['id_nombre_seleccionado'];
 
     // Verificar si el ID del nombre ya existe en la base de datos
-    $sql_verificacion = "SELECT * FROM citas WHERE id_nombre_seleccionado = '$id_nombre_seleccionado'";
+    $sql_verificacion = "SELECT * FROM registro_clientes WHERE id_nombre_seleccionado = '$id_nombre_seleccionado'";
     $result_verificacion = $conn->query($sql_verificacion);
 
     if ($result_verificacion->num_rows > 0) {
-        // El ID del nombre ya existe, mostrar mensaje de error
-        $_SESSION['mensaje'] = "El cliente ya está registrado";
+        // Si ya existe un registro con el mismo id_nombre_seleccionado, mostrar mensaje de error
+        $_SESSION['mensaje'] = "El cliente ya está registrado y ya tiene numero de expediente";
         $_SESSION['mensaje_tipo'] = "error";
     } else {
-        // Preparar la consulta SQL para insertar los datos en la tabla
-        $sql = "INSERT INTO registro_clientes (id_nombre_seleccionado, nombre, ap_paterno, ap_materno, telefono, fecha_nacimiento, genero, usuario, direccion, numero_interno, numero_externo, codigo_postal, ciudad, whatsapp, estatus)
-        VALUES ('$id_nombre_seleccionado', '$nombre', '$ap_paterno', '$ap_materno', '$telefono', '$fecha_nacimiento', '$genero', '$usuario', '$direccion', '$numero_interno', '$numero_externo', '$codigo_postal', '$ciudad', '$whatsapp', '$estatus')";
+        // Si no hay registros con el mismo id_nombre_seleccionado, proceder con la inserción
 
-        if ($conn->query($sql) === TRUE) {
+        // Recuperar los demás valores del formulario
+        $nombre = $_POST['nombre'];
+        $ap_paterno = $_POST['ap_paterno'];
+        $ap_materno = $_POST['ap_materno'];
+        $telefono = $_POST['telefono'];
+        $fecha_nacimiento = $_POST['fecha_nacimiento'];
+        $genero = $_POST['genero'];
+        $direccion = $_POST['direccion'];
+        $numero_interno = $_POST['numero_interno'];
+        $numero_externo = $_POST['numero_externo'];
+        $codigo_postal = $_POST['codigo_postal'];
+        $ciudad = $_POST['ciudad'];
+        $whatsapp = $_POST['whatsapp'];
+        $estatus = $_POST['estatus'];
+
+        // Obtener el siguiente número de expediente disponible
+        $sql_max_expediente = "SELECT MAX(numero_expediente) AS max_expediente FROM registro_clientes";
+        $result_max_expediente = $conn->query($sql_max_expediente);
+        $row_max_expediente = $result_max_expediente->fetch_assoc();
+        $siguiente_expediente = ($row_max_expediente['max_expediente'] ?? 0) + 1;
+
+        // Preparar la consulta SQL para insertar los datos en la tabla
+        $sql_insert = "INSERT INTO registro_clientes (id_nombre_seleccionado, nombre, ap_paterno, ap_materno, telefono, fecha_nacimiento, genero, numero_expediente, direccion, numero_interno, numero_externo, codigo_postal, ciudad, whatsapp, estatus)
+        VALUES ('$id_nombre_seleccionado', '$nombre', '$ap_paterno', '$ap_materno', '$telefono', '$fecha_nacimiento', '$genero', '$siguiente_expediente', '$direccion', '$numero_interno', '$numero_externo', '$codigo_postal', '$ciudad', '$whatsapp', '$estatus')";
+
+        if ($conn->query($sql_insert) === TRUE) {
             // Almacena el mensaje de éxito en una variable de sesión
             $_SESSION['mensaje'] = "Cliente registrado exitosamente";
             $_SESSION['mensaje_tipo'] = "success";

@@ -133,10 +133,49 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
 
 
                                     <div class="form-group">
-                                        <label for="usuario">USUARIO:</label>
-                                        <input type="text" class="form-control" id="usuario" name="usuario"
-                                            oninput="this.value = this.value.toUpperCase()" required>
-                                    </div>
+    <label for="numero_expediente">NÚMERO DE EXPEDIENTE:</label>
+    <input type="text" class="form-control" id="numero_expediente" name="numero_expediente" readonly value="<?php echo obtenerSiguienteNumeroExpediente(); ?>">
+</div>
+
+<script>
+    <?php
+// Esta función deberá ser definida en tu script PHP
+function obtenerSiguienteNumeroExpediente() {
+    // Aquí puedes incluir la lógica para obtener el siguiente número de expediente disponible
+    // Por ejemplo, podrías consultar la base de datos para obtener el último número de expediente y luego incrementarlo en uno
+
+    // Ejemplo de cómo podrías obtener el siguiente número de expediente:
+    // Conectar a la base de datos
+    include '../config/conexion.php';
+
+    // Consultar el último número de expediente
+    $sql = "SELECT MAX(numero_expediente) AS max_numero FROM registro_clientes";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $max_numero = $row["max_numero"];
+        // Incrementar el último número de expediente en uno para obtener el siguiente número disponible
+        $siguiente_numero = $max_numero + 1;
+    } else {
+        // Si no hay registros, iniciar en 1
+        $siguiente_numero = 1;
+    }
+
+    // Cerrar la conexión a la base de datos
+    $conn->close();
+
+    // Retornar el siguiente número de expediente
+    return $siguiente_numero;
+}
+?>
+
+</script>
+
+
+
+
+
                                 </div>
                                 <div class="col-md-6">
 
