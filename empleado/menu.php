@@ -103,21 +103,21 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
 
 <li class="nav-item">
-    <a class="nav-link" href="compañia.php">
+    <a class="nav-link" href="expediente.php">
         <i class="fas fa-fw fa-address-card"></i>
-        <span>Registro Expedinte</span>
+        <span>Expedinte</span>
     </a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="servicios.php">
+    <a class="nav-link" href="diagnostico.php">
         <i class="fas fa-fw fa-notes-medical"></i>
         <span>Diagnostico</span>
     </a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="servicios.php">
+    <a class="nav-link" href="tratamiento.php">
         <i class="fas fa-fw fa-hand-holding-medical"></i>
         <span>Tratamiento</span>
     </a>
