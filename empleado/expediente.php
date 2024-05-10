@@ -34,57 +34,56 @@
 
         <div class="row">
 
-        <div class="col-xl-12 col-lg-7">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">EXPEDIENTE</h6>
-            <div class="dropdown no-arrow">
-                <!-- Aquí puedes poner el contenido de tu menú desplegable si es necesario -->
+            <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">EXPEDIENTE</h6>
+                        <div class="dropdown no-arrow">
+                            <!-- Aquí puedes poner el contenido de tu menú desplegable si es necesario -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Motor de búsqueda -->
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="searchInput"
+                                placeholder="BUSCAR NUMERO DE EXPEDINETE...">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">BUSCAR</button>
+                            </div>
+                        </div>
+                        <!-- Tabla -->
+                        <div class="table-responsive" id="searchResults">
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre Cliente</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
+                                        <th>Servicio Nombre</th>
+                                        <th>Fecha y Hora de Estudio</th>
+                                        <th>Razón</th>
+                                        <th>Número de Expediente</th>
+                                        <th>Precio</th>
+                                        <th>Duración</th>
+                                        <th>Diagnóstico</th> <!-- Nueva columna agregada -->
+                                        <th>Descargar Expediente</th> <!-- Nueva columna agregada -->
+                                    </tr>
+                                </thead>
+                                <!-- Aquí se mostrarán los resultados de la búsqueda -->
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
-    <!-- Motor de búsqueda -->
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" id="searchInput" placeholder="BUSCAR NUMERO DE EXPEDINETE...">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button">BUSCAR</button>
-        </div>
-    </div>
-    <!-- Tabla -->
-    <div class="table-responsive" id="searchResults">
-        <table class='table'>
-            <thead>
-                <tr>
-                    <th>Nombre Cliente</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Servicio Nombre</th>
-                    <th>Fecha y Hora de Estudio</th>
-                    <th>Razón</th>
-                    <th>Número de Expediente</th>
-                    <th>Precio</th>
-                    <th>Duración</th>
-                    <th>Descargar Expediente</th> <!-- Nueva columna agregada -->
-                </tr>
-            </thead>
-            <!-- Aquí se mostrarán los resultados de la búsqueda -->
-            <tbody></tbody>
-        </table>
-    </div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
 
 
     </div>
+
 
     </div>
 
@@ -95,15 +94,17 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function(){
-        $('#searchInput').on('input', function(){
+    $(document).ready(function() {
+        $('#searchInput').on('input', function() {
             var searchTerm = $(this).val();
-            if(searchTerm != ''){
+            if (searchTerm != '') {
                 $.ajax({
                     url: 'search.php', // Ruta al archivo PHP que manejará la búsqueda
                     method: 'POST',
-                    data: {searchTerm: searchTerm},
-                    success: function(data){
+                    data: {
+                        searchTerm: searchTerm
+                    },
+                    success: function(data) {
                         $('#searchResults').html(data);
                     }
                 });
@@ -115,6 +116,5 @@
     </script>
 
 </body>
-
 
 </html>

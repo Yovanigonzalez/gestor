@@ -255,7 +255,7 @@ function obtenerSiguienteNumeroExpediente() {
 
     <script src="js/compañia.js"></script>
     <script src="js/empleado.js"></script>
-    <script src="js/citas.js"></script>
+    <script src="js/citas2.js"></script>
 
 
     <!-- End of Footer -->
