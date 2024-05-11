@@ -150,7 +150,7 @@
                                     <select class="form-control" id="companiaSelect" name="compania" required>
                                         <option value="">SELECCIONA UNA COMPAÑIA</option>
                                         <option value="COMPAÑIA 1">COMPAÑIA 1</option>
-                                        <option value="COMPAÑIA 2">COMPAÑIA 2</option>
+                                        <!--<option value="COMPAÑIA 2">COMPAÑIA 2</option>-->
                                     </select>
                                     <!-- Este campo de texto se ocultará y se actualizará con JavaScript -->
                                     <input type="hidden" id="compania" name="compania" required>

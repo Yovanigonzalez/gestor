@@ -1,8 +1,8 @@
 <?php
-// Establecer la conexión a la base de datos (reemplaza los valores con los correspondientes a tu configuración)
+// Incluye el archivo de configuración para establecer la conexión a la base de datos (reemplaza los valores con los correspondientes a tu configuración)
 include '../config/conexion.php';
 
-// Verificar si se enviaron los datos del formulario
+// Verifica si se enviaron los datos del formulario mediante el método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $expediente = $_POST['expediente'];
@@ -14,26 +14,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_nombre_seleccionado = $_POST['id_nombre_seleccionado'];
     $resultados = $_POST['resultados'];
 
-    // Preparar la consulta SQL para insertar los datos en la tabla correspondiente
+    // Prepara la consulta SQL para insertar los datos en la tabla correspondiente
     $sql = "INSERT INTO tabla_diagnostico (expediente, servicio, nombre_cliente, ap_paterno, ap_materno, razon, id_nombre_seleccionado, resultados) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
-    // Preparar la declaración
+    // Prepara la declaración
     $stmt = $conn->prepare($sql);
 
-    // Vincular los parámetros
-    $stmt->bind_param("isssssis", $expediente, $servicio, $nombre_cliente, $ap_paterno, $ap_materno, $razon, $id_nombre_seleccionado, $resultados);
+    // Verifica si la preparación de la consulta fue exitosa
+    if ($stmt) {
+        // Vincula los parámetros
+        $stmt->bind_param("isssssis", $expediente, $servicio, $nombre_cliente, $ap_paterno, $ap_materno, $razon, $id_nombre_seleccionado, $resultados);
 
-    // Ejecutar la declaración
-    if ($stmt->execute()) {
-        echo "Los datos se guardaron correctamente en la base de datos.";
+        // Ejecuta la declaración
+        if ($stmt->execute()) {
+            // Obtiene el ID del último registro insertado
+            $last_id = $conn->insert_id;
+
+            // Cierra la declaración
+            $stmt->close();
+
+            // Cierra la conexión
+            $conn->close();
+
+            // Introduce un retraso de 3 segundos
+            sleep(1);
+
+            // Redirige a tratamiento.php con el ID del último registro insertado
+            header("Location: tratamiento.php?id=$last_id&mensaje=Los+datos+se+han+guardado+correctamente&tipo_exito=success");
+            exit(); // Asegura que no haya más ejecución después de la redirección
+        } else {
+            // Redirige a diagnostico.php con un mensaje de error si falla la ejecución de la consulta
+            header("Location: diagnostico.php?mensaje=Error+al+intentar+guardar+los+datos%3A+" . urlencode($stmt->error) . "&tipo_error=danger");
+            exit(); // Asegura que no haya más ejecución después de la redirección
+        }
     } else {
-        echo "Error al intentar guardar los datos: " . $conn->error;
+        // Redirige a diagnostico.php con un mensaje de error si falla la preparación de la consulta
+        header("Location: diagnostico.php?mensaje=Error+al+preparar+la+consulta&tipo_error=danger");
+        exit(); // Asegura que no haya más ejecución después de la redirección
     }
-
-    // Cerrar la declaración y la conexión
-    $stmt->close();
-    $conn->close();
 } else {
-    echo "Error: No se recibieron datos del formulario.";
+    // Redirige a diagnostico.php con un mensaje de error si no se reciben datos del formulario
+    header("Location: diagnostico.php?mensaje=Error%3A+No+se+recibieron+datos+del+formulario&tipo_error=danger");
+    exit(); // Asegura que no haya más ejecución después de la redirección
 }
 ?>

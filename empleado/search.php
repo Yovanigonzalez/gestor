@@ -13,7 +13,7 @@ if (isset($_POST['searchTerm'])) {
     $numeroExpediente = $_POST['searchTerm'];
 
     // Consulta SQL para buscar en la columna 'numero_expediente'
-    $sql = "SELECT nombre_cliente, ap_paterno, ap_materno, servicio_nombre, fecha_hora_estudio, razon, numero_expediente, precio, duracion, id_nombre_seleccionado FROM agenda_citas WHERE numero_expediente LIKE '%$numeroExpediente%'";
+    $sql = "SELECT nombre_cliente, ap_paterno, ap_materno, servicio_nombre, fecha_hora_estudio, razon, numero_expediente, precio, duracion, id_nombre_seleccionado FROM agenda_citas WHERE numero_expediente LIKE '%$numeroExpediente%' ORDER BY fecha_hora_estudio DESC";
 
     $result = $conn->query($sql);
 

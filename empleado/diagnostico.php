@@ -35,6 +35,24 @@
                     <!-- Campos de formulario -->
                     <div id="searchResults">
                         <form action="guardar_diagnostico.php" method="POST">
+
+                        <?php
+                                // Verifica si hay un mensaje en la URL
+                                if(isset($_GET['mensaje']) && isset($_GET['tipo_exito'])) {
+                                    $mensaje = $_GET['mensaje'];
+                                    $tipo_exito = $_GET['tipo_exito'];
+                                    
+                                    // Mostrar el mensaje de éxito
+                                    echo "<div class=\"alert alert-$tipo_exito\">$mensaje</div>";
+                                } elseif(isset($_GET['mensaje']) && isset($_GET['tipo_error'])) {
+                                    $mensaje = $_GET['mensaje'];
+                                    $tipo_error = $_GET['tipo_error'];
+                                    
+                                    // Mostrar el mensaje de error
+                                    echo "<div class=\"alert alert-$tipo_error\">$mensaje</div>";
+                                }
+                                ?>
+                                
                             <?php
                             // Establecer la conexión a la base de datos (reemplaza los valores con los correspondientes a tu configuración)
                             include '../config/conexion.php';
