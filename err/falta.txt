@@ -1,0 +1,6 @@
+cambiar la busqueda del numero de folio diagnostico, hacer que se imprima el pdf
+
+cambiar la parte del admin al ingresar numero no debe agregar letras
+
+motor de busqueda del folio diagnostico
+
