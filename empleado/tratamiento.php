@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Formulario -->
-                        <form action="guardar_citas.php" method="POST" onsubmit="return validarFormulario()">
+                        <form action="guardar_tratamiento.php" method="POST">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
