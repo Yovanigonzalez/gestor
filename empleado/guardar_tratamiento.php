@@ -1,4 +1,6 @@
 <?php
+session_start(); // Iniciar la sesión si no está iniciada
+
 // Verifica si se recibieron los datos del formulario correctamente
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -17,34 +19,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcion = $_POST['descripcion'];
     $recomendaciones = $_POST['recomendaciones'];
     $medicamentos = $_POST['medicamentos'];
-    $progreso = $_POST['progreso'];
+    //$progreso = $_POST['progreso'];
     $folio_diagnostico = $_POST['folio_diagnostico'];
     $fecha_inicio = $_POST['fecha_inicio'];
     $fecha_fin = $_POST['fecha_fin'];
     
     // Query para insertar los datos en la tabla de tratamientos
-    $sql = "INSERT INTO tabla_tratamiento (expediente, servicio, nombre_cliente, ap_paterno, ap_materno, razon, id_nombre_seleccionado, resultados, descripcion, recomendaciones, medicamentos, progreso, folio_diagnostico, fecha_inicio, fecha_fin) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO tabla_tratamiento (expediente, servicio, nombre_cliente, ap_paterno, ap_materno, razon, id_nombre_seleccionado, resultados, descripcion, recomendaciones, medicamentos, folio_diagnostico, fecha_inicio, fecha_fin) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     // Preparar la sentencia
     $stmt = $conn->prepare($sql);
     
     // Vincular los parámetros
-    $stmt->bind_param("sssssssssssssss", $expediente, $servicio, $nombre_cliente, $ap_paterno, $ap_materno, $razon, $id_nombre_seleccionado, $resultados, $descripcion, $recomendaciones, $medicamentos, $progreso, $folio_diagnostico, $fecha_inicio, $fecha_fin);
+    $stmt->bind_param("ssssssssssssss", $expediente, $servicio, $nombre_cliente, $ap_paterno, $ap_materno, $razon, $id_nombre_seleccionado, $resultados, $descripcion, $recomendaciones, $medicamentos, $folio_diagnostico, $fecha_inicio, $fecha_fin);
     
     // Ejecutar la sentencia
     if ($stmt->execute()) {
-        echo "Tratamiento registrado correctamente.";
+        // Establecer mensaje de éxito en la sesión
+        $_SESSION['mensaje'] = "Tratamiento registrado correctamente.";
+        $_SESSION['mensaje_tipo'] = "success";
     } else {
-        echo "Error al registrar el tratamiento: " . $conn->error;
+        // Establecer mensaje de error en la sesión
+        $_SESSION['mensaje'] = "Error al registrar el tratamiento: " . $conn->error;
+        $_SESSION['mensaje_tipo'] = "error";
     }
     
     // Cerrar la conexión y la sentencia
     $stmt->close();
     $conn->close();
     
+    // Redirigir a tratamiento.php
+    header("Location: tratamiento.php");
+    exit();
+    
 } else {
     // Si no es una solicitud POST, redireccionar o mostrar un mensaje de error apropiado
-    echo "Error: Método de solicitud incorrecto.";
+    $_SESSION['mensaje'] = "Error: Método de solicitud incorrecto.";
+    $_SESSION['mensaje_tipo'] = "error";
+    // Redirigir a tratamiento.php
+    header("Location: tratamiento.php");
+    exit();
 }
 ?>

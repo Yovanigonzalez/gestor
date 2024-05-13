@@ -109,19 +109,19 @@ if (empty($_SERVER['HTTP_REFERER'])) {
     </a>
 </li>
 
-<!--<li class="nav-item">
-    <a class="nav-link" href="diagnostico.php">
-        <i class="fas fa-fw fa-notes-medical"></i>
-        <span>Diagnostico</span>
-    </a>
-</li>-->
-
 <li class="nav-item">
+    <a class="nav-link" href="buscar_diagnostico.php">
+        <i class="fas fa-fw fa-notes-medical"></i>
+        <span>Buscar Diagnostico</span>
+    </a>
+</li>
+
+<!--<li class="nav-item">
     <a class="nav-link" href="tratamiento.php">
         <i class="fas fa-fw fa-hand-holding-medical"></i>
         <span>Tratamiento</span>
     </a>
-</li>
+</li>-->
 
 
 
