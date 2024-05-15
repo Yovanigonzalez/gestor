@@ -98,8 +98,20 @@
                                 <!-- Campo para Precio -->
                                 <div class="form-group">
                                     <label for="precio">PRECIO:</label>
-                                    <input type="text" class="form-control" id="precio" name="precio" required>
+                                    <input type="text" class="form-control" id="precio" name="precio" oninput="validarPrecio(this)" required>
                                 </div>
+
+                                <script>
+                                    function validarPrecio(input) {
+                                        // Expresión regular para verificar si solo hay números
+                                        var regex = /^[0-9]*$/;
+
+                                        // Si el valor no contiene solo números, borrarlo
+                                        if (!regex.test(input.value)) {
+                                            input.value = '';
+                                        }
+                                    }
+                                </script>
 
 
                                 <!-- Campo para Categoría de Servicio -->
