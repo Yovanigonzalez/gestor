@@ -177,12 +177,15 @@
 
                                         <div class="form-group">
                                             <label for="fecha_inicio">FECHA INICIO:</label>
-                                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio">
+                                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" min="<?php echo date('Y-m-d'); ?>">
                                         </div>
+
+
                                         <div class="form-group">
                                             <label for="fecha_fin">FECHA FIN:</label>
-                                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin">
+                                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" min="<?php echo date('Y-m-d'); ?>">
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

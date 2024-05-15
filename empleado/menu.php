@@ -123,6 +123,12 @@ if (empty($_SERVER['HTTP_REFERER'])) {
     </a>
 </li>-->
 
+<li class="nav-item">
+    <a class="nav-link" href="editar_d_cliente.php">
+        <i class="fas fa-fw fa-user"></i> <!-- Cambiado el icono a "fa-user" -->
+        <span>Editar Datos del cliente</span>
+    </a>
+</li>
 
 
             <!-- Elemento de navegación - Usuarios -->

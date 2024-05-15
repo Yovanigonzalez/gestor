@@ -182,9 +182,9 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
 
                                     <div class="form-group">
                                         <label for="fecha_hora_estudio">FECHA Y HORA PARA ESTUDIO:</label>
-                                        <input type="datetime-local" class="form-control" id="fecha_hora_estudio"
-                                            name="fecha_hora_estudio" required>
+                                        <input type="datetime-local" class="form-control" id="fecha_hora_estudio" name="fecha_hora_estudio" required min="<?php echo date('Y-m-d\TH:i'); ?>">
                                     </div>
+
 
 
                                     <!-- Script para manejar el cambio en tiempo real en el campo de selección de servicios -->
