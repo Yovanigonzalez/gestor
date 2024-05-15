@@ -156,7 +156,7 @@ if (empty($_SERVER['HTTP_REFERER'])) {
 
             <!-- Elemento de navegación - Usuarios -->
             <li class="nav-item">
-                <a class="nav-link" href="../pdf/db.pdf" download>
+                <a class="nav-link" href="../pdf/manual_admin.pdf" download>
                     <i class="fas fa-fw fa-book"></i>
                     <span>Manual de Admin</span>
                 </a>
