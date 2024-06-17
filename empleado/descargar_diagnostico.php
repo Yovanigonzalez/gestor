@@ -20,82 +20,99 @@ if(isset($_GET['folio_diagnostico'])) {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Crear una nueva instancia de TCPDF
+        // Crear un nuevo objeto TCPDF
         $pdf = new TCPDF();
-        
-        // Establecer propiedades del documento
-        $pdf->SetCreator('Diagnóstico Médico');
-        $pdf->SetAuthor('Tu Clínica');
-        $pdf->SetTitle('Informe de Diagnóstico Médico');
-        $pdf->SetSubject('Informe de Diagnóstico');
-        $pdf->SetKeywords('diagnóstico, médico, clínica');
 
         // Agregar una página
         $pdf->AddPage();
 
-        // Establecer el estilo del texto
-        $pdf->SetFont('helvetica', '', 12);
+        // Agregar logo
+        $pdf->Image('../log/hospital.png', 10, 10, 40, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+
+        // Estilo para el título
+        $pdf->SetFont('Helvetica', 'B', 16);
+        $pdf->Cell(0, 10, 'INFORME DE DIAGNÓSTICO MÉDICO', 0, 1, 'C');
+        $pdf->Ln(10);
 
         // Agregar el encabezado
-        $pdf->Cell(0, 10, 'Folio Diagnóstico: ' . $folio_diagnostico, 0, 1, 'R');
+        $pdf->SetFont('helvetica', '', 12);
+        $pdf->Cell(0, 10, 'FOLIO DIAGNÓSTICO: ' . $folio_diagnostico, 0, 1, 'R');
         $pdf->Ln(10);
+
+        // Estilo para los datos
+        $pdf->SetFont('Helvetica', '', 10);
+        $fill = false;
+        $fillColor = array(230, 230, 230);
+        $textColor = array(50, 50, 50);
 
         // Agregar contenido al PDF
         while($row = $result->fetch_assoc()) {
             // Nombre y apellidos
-            $pdf->Cell(0, 10, $row['nombre_cliente'] . ' ' . $row['ap_paterno'] . ' ' . $row['ap_materno'], 0, 1);
+            $pdf->SetFillColor($fillColor[0], $fillColor[1], $fillColor[2]);
+            $pdf->SetTextColor($textColor[0], $textColor[1], $textColor[2]);
+            $pdf->Cell(50, 10, 'NOMBRE DEL PACIENTE:', 1, 0, 'L', $fill);
+            $pdf->Cell(0, 10, $row['nombre_cliente'] . ' ' . $row['ap_paterno'] . ' ' . $row['ap_materno'], 1, 1, 'L', $fill);
             
-            // Línea horizontal
-            $pdf->Cell(0, 0, '', 'T', 1, 'C');
+            $fill = !$fill; // Alternar color de fondo
 
             // Descripción
-            $pdf->Cell(0, 10, 'DESCRIPCIÓN:', 0, 1);
-            $pdf->MultiCell(0, 10, $row['razon'], 0, 'L', false);
+            $pdf->SetFillColor($fillColor[0], $fillColor[1], $fillColor[2]);
+            $pdf->SetTextColor($textColor[0], $textColor[1], $textColor[2]);
+            $pdf->Cell(50, 10, 'DESCRIPCIÓN:', 1, 0, 'L', $fill);
+            $pdf->MultiCell(0, 10, $row['razon'], 1, 'L', $fill);
             
-            // Línea horizontal
-            $pdf->Cell(0, 0, '', 'T', 1, 'C');
+            $fill = !$fill; // Alternar color de fondo
 
             // Medicamentos
-            // Medicamentos
-            $pdf->Cell(0, 10, 'MEDICAMENTOS:', 0, 1);
-            $medicamentos = explode("\n", $row['medicamentos']); // Convertir la lista en un array
+            $pdf->SetFillColor($fillColor[0], $fillColor[1], $fillColor[2]);
+            $pdf->SetTextColor($textColor[0], $textColor[1], $textColor[2]);
+            $pdf->Cell(50, 10, 'MEDICAMENTOS:', 1, 0, 'L', $fill);
+            $medicamentos = explode("\n", $row['medicamentos']);
             foreach ($medicamentos as $medicamento) {
-                $pdf->Cell(0, 10, '- ' . $medicamento, 0, 1, 'L');
+                $pdf->Cell(0, 10, '- ' . $medicamento, 1, 1, 'L', $fill);
+                $fill = !$fill; // Alternar color de fondo
             }
 
             // Recomendaciones
-            $pdf->Cell(0, 10, 'RECOMENDACIONES:', 0, 1);
-            $pdf->MultiCell(0, 10, $row['recomendaciones'], 0, 'L', false);
-            
-            
+            $pdf->SetFillColor($fillColor[0], $fillColor[1], $fillColor[2]);
+            $pdf->SetTextColor($textColor[0], $textColor[1], $textColor[2]);
+            $pdf->Cell(50, 10, 'RECOMENDACIONES:', 1, 0, 'L', $fill);
+            $pdf->MultiCell(0, 10, $row['recomendaciones'], 1, 'L', $fill);
 
-            // Línea horizontal
-            $pdf->Cell(0, 0, '', 'T', 1, 'C');
-            
+            $fill = !$fill; // Alternar color de fondo
+
             // Fechas
-            $pdf->Cell(0, 10, 'FECHA INCIO: ' . $row['fecha_inicio'], 0, 1);
-            $pdf->Cell(0, 10, 'FECHA FIN: ' . $row['fecha_fin'], 0, 1);
-            
-            // Línea horizontal
-            $pdf->Cell(0, 0, '', 'T', 1, 'C');
+            $pdf->SetFillColor($fillColor[0], $fillColor[1], $fillColor[2]);
+            $pdf->SetTextColor($textColor[0], $textColor[1], $textColor[2]);
+            $pdf->Cell(50, 10, 'FECHA INICIO:', 1, 0, 'L', $fill);
+            $pdf->Cell(0, 10, $row['fecha_inicio'], 1, 1, 'L', $fill);
+
+            $fill = !$fill; // Alternar color de fondo
+
+            $pdf->SetFillColor($fillColor[0], $fillColor[1], $fillColor[2]);
+            $pdf->SetTextColor($textColor[0], $textColor[1], $textColor[2]);
+            $pdf->Cell(50, 10, 'FECHA FIN:', 1, 0, 'L', $fill);
+            $pdf->Cell(0, 10, $row['fecha_fin'], 1, 1, 'L', $fill);
+
+            // Línea de separación
+            $pdf->SetLineWidth(0.5);
+            $pdf->Line(10, $pdf->GetY(), 200, $pdf->GetY());
+            $pdf->Ln(10); // Salto de línea
         }
 
+        // Estilo para el pie de página
+        $pdf->SetFont('Helvetica', 'I', 10);
+        $pdf->Cell(0, 10, 'INFORME GENERADO EL DIA ' . date('d/m/Y H:i:s'), 0, 1, 'C');
+
         // Generar el PDF
-        $content = $pdf->Output('', 'S');
-        
-        // Descargar el PDF con el nombre 'expediente.pdf'
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="expediente.pdf"');
-        echo $content;
+        $pdf->Output('INFORME_DIAGNOSTICO_' . $folio_diagnostico . '.pdf', 'D');
     } else {
-        // Si no se encontraron detalles para el expediente, mostrar un mensaje de error
-        echo "No se encontraron detalles para el expediente seleccionado.";
+        echo "NO SE ENCONTRARON DETALLES DEL EXPEDINTE SELECCIONADO.";
     }
 
     // Cerrar la conexión a la base de datos
     $conn->close();
 } else {
-    // Si no se recibió el número de folio_diagnostico, redirigir o mostrar un mensaje de error
     echo "Número de folio_diagnostico no especificado.";
 }
 ?>

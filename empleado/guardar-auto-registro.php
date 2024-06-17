@@ -33,10 +33,10 @@ if ($check_result->num_rows > 0) {
             VALUES ('$nombre', '$ap_paterno', '$ap_materno', '$estatura', '$alergias', '$enfermedades', '$fracturas', '$antecedentes', '$otros')";
 
     if ($conn->query($sql) === TRUE) {
-        $_SESSION['mensaje'] = "El registro se guardó correctamente.";
+        $_SESSION['mensaje'] = "EL REGISTRO SE GUARDÓ CORRECTAMENTE.";
         $_SESSION['mensaje_tipo'] = "success";
     } else {
-        $_SESSION['mensaje'] = "Hubo un error al guardar el registro: " . $conn->error;
+        $_SESSION['mensaje'] = "HUBO UN ERROR AL GUARDAR EL REGISTRO: " . $conn->error;
         $_SESSION['mensaje_tipo'] = "error";
     }
 }

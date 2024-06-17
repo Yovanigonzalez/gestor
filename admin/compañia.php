@@ -167,7 +167,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">REGISTRAR EMPLEADO</button>
+                        <button type="submit" class="btn btn-primary">REGISTRAR COMPAÑIA</button>
                     </form>
 
                 </div>

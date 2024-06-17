@@ -20,7 +20,7 @@ if (isset($_POST['searchTerm'])) {
     // Mostrar los resultados en una tabla
     if ($result->num_rows > 0) {
         echo "<table class='table'>";
-        echo "<thead><tr><th>Nombre Cliente</th><th>Apellido Paterno</th><th>Apellido Materno</th><th>Número de Expediente</th><th>Folio Diagnóstico</th><th>Descargar Expediente</th></tr></thead>";
+        echo "<thead><tr><th>NOMBRE</th><th>APELLIDO PATERNO</th><th>APELLIDO MATERNO</th><th>NÚMERO DE EXPEDIENTE</th><th>FOLIO DE DIAGNOSTICO</th><th>DESCARGAR DIAGNOSTICO</th></tr></thead>";
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
             echo "<tr>";

@@ -224,7 +224,7 @@ como campos obligatorios, formato de número de teléfono y coincidencia de patr
 
                                 </div>
                             </div>
-                            <button id="btn-registrar" type="submit" class="btn btn-primary">REGISTRAR CLIENTE</button>
+                            <button id="btn-registrar" type="submit" class="btn btn-primary">REGISTRAR CITA</button>
                         </form>
 
                     </div>

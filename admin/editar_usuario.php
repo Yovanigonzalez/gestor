@@ -58,6 +58,13 @@ include '../config/conexion.php';
 
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
+    <style>
+        /* Estilo para convertir el texto a mayúsculas */
+        input[type="text"] {
+            text-transform: uppercase;
+        }
+    </style>
+
 </head>
 
 
@@ -65,7 +72,7 @@ include '../config/conexion.php';
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Editar Empleado</h1>
+        <h1 class="h3 mb-0 text-gray-800">EDITAR DATOS DEL EMPLEADO</h1>
     </div>
 
     <div class="row">
@@ -80,7 +87,7 @@ include '../config/conexion.php';
         <div class="col-xl-12 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Editar Empleado</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">EDITAR DATOS DEL EMPLEADO</h6>
                     <div class="dropdown no-arrow">
 
                     </div>
@@ -109,19 +116,18 @@ include '../config/conexion.php';
                                     <!-- Campo oculto para enviar el ID del usuario al guardar los cambios -->
 
                                     <div class="form-group">
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" id="nombre" name="nombre"
-                                            value="<?php echo $usuario['nombre']; ?>" class="form-control">
+                                        <label for="nombre">NOMBRE:</label>
+                                        <input type="text" id="nombre" name="nombre" value="<?php echo $usuario['nombre']; ?>" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="correo">Correo Electrónico:</label>
+                                        <label for="correo">CORREO:</label>
                                         <input type="email" id="correo" name="correo"
                                             value="<?php echo $usuario['correo']; ?>" class="form-control">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="contrasena">Contraseña:</label>
+                                        <label for="contrasena">CONTRASEÑA:</label>
                                         <div class="input-group">
                                             <input type="password" id="contrasena" name="contrasena"
                                                 class="form-control">
@@ -132,7 +138,7 @@ include '../config/conexion.php';
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                    <button type="submit" class="btn btn-primary">GUARDAR CAMBIOS</button>
                                 </form>
 
 

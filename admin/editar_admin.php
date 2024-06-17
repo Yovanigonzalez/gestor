@@ -65,7 +65,7 @@ include '../config/conexion.php';
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Editar Empleado</h1>
+        <h1 class="h3 mb-0 text-gray-800">EDITAR DATOS DEL ADMIN</h1>
     </div>
 
     <div class="row">
@@ -80,7 +80,7 @@ include '../config/conexion.php';
         <div class="col-xl-12 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Editar Empleado</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">EDITAR DATOS DEL ADMIN</h6>
                     <div class="dropdown no-arrow">
 
                     </div>
@@ -140,7 +140,7 @@ include '../config/conexion.php';
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                    <button type="submit" class="btn btn-primary">GUARDAR CAMBIOS</button>
                                 </form>
 
 

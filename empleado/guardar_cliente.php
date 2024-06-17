@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result_verificacion->num_rows > 0) {
         // Si ya existe un registro con el mismo id_nombre_seleccionado, mostrar mensaje de error
-        $_SESSION['mensaje'] = "El cliente ya está registrado y ya tiene numero de expediente";
+        $_SESSION['mensaje'] = "EL CLIENTE YA ESTÁ REGISTRADO Y YA TIENE NÚMERO DE EXPEDIENTE";
         $_SESSION['mensaje_tipo'] = "error";
     } else {
         // Si no hay registros con el mismo id_nombre_seleccionado, proceder con la inserción
@@ -52,11 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($conn->query($sql_insert) === TRUE) {
             // Almacena el mensaje de éxito en una variable de sesión
-            $_SESSION['mensaje'] = "Cliente registrado exitosamente";
+            $_SESSION['mensaje'] = "CLIENTE REGISTRADO";
             $_SESSION['mensaje_tipo'] = "success";
         } else {
             // Almacena el mensaje de error en una variable de sesión
-            $_SESSION['mensaje'] = "Error al registrar el cliente: " . $conn->error;
+            $_SESSION['mensaje'] = "ERROR AL REGISTRAR AL CLIENTE: " . $conn->error;
             $_SESSION['mensaje_tipo'] = "error";
         }
     }

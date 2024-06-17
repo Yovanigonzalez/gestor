@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">REGISTRAR EMPLEADO</button>
+                        <button type="submit" class="btn btn-primary">REGISTRAR SERVICIO</button>
                     </form>
 
 

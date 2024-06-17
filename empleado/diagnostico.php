@@ -160,7 +160,7 @@
                             // Cerrar la conexión a la base de datos
                             $conn->close();
                             ?>
-                            <button id="btn-registrar" type="submit" class="btn btn-primary">REGISTRAR CLIENTE</button>
+                            <button id="btn-registrar" type="submit" class="btn btn-primary">REGISTRAR DIAGNOSTICO</button>
                         </form>
                     </div>
                 </div>

@@ -37,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ejecutar la sentencia
     if ($stmt->execute()) {
         // Establecer mensaje de éxito en la sesión
-        $_SESSION['mensaje'] = "Tratamiento registrado correctamente.";
+        $_SESSION['mensaje'] = "TRATAMIENTO REGISTRADO CORRECTAMENTE.";
         $_SESSION['mensaje_tipo'] = "success";
     } else {
         // Establecer mensaje de error en la sesión
-        $_SESSION['mensaje'] = "Error al registrar el tratamiento: " . $conn->error;
+        $_SESSION['mensaje'] = "ERROR AL REGISTRAR EL TRATAMIENTO: " . $conn->error;
         $_SESSION['mensaje_tipo'] = "error";
     }
     
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 } else {
     // Si no es una solicitud POST, redireccionar o mostrar un mensaje de error apropiado
-    $_SESSION['mensaje'] = "Error: Método de solicitud incorrecto.";
+    $_SESSION['mensaje'] = "ERROR: MÉTODO DE SOLICITUD INCORRECTO.";
     $_SESSION['mensaje_tipo'] = "error";
     // Redirigir a tratamiento.php
     header("Location: tratamiento.php");

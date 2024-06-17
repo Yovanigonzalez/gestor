@@ -44,11 +44,11 @@ function buscarUsuario() {
             "<button class='btn btn-primary mr-1' onclick='editarUsuario(" +
             usuario.id +
             ")'>EDITAR</button>";
-          fila +=
-            "<button class='btn btn-danger' onclick='confirmarEliminarUsuario(" +
-            usuario.id +
-            ")'>ELIMINAR</button>";
-          fila += "</td>";
+          //fila +=
+            //"<button class='btn btn-danger' onclick='confirmarEliminarUsuario(" +
+            //usuario.id +
+            //")'>ELIMINAR</button>";
+          //fila += "</td>";
           fila += "</tr>";
           tablaUsuarios.innerHTML += fila;
         }

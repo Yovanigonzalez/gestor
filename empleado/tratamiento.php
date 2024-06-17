@@ -82,10 +82,10 @@
                                                     echo "<label for='razon'>RAZÓN:</label>";
                                                     echo "<textarea class='form-control' id='razon' name='razon' readonly>" . htmlspecialchars($row['razon']) . "</textarea>";
                                                     echo "</div>";
-                                                    echo "<div class='form-group'>";
-                                                    echo "<label for='id_nombre_seleccionado'>ID:</label>";
-                                                    echo "<input type='text' class='form-control' id='id_nombre_seleccionado' name='id_nombre_seleccionado' value='" . htmlspecialchars($row['id_nombre_seleccionado']) . "' readonly>";
-                                                    echo "</div>";
+                                                    //echo "<div class='form-group'>";
+                                                    //echo "<label for='id_nombre_seleccionado'>ID:</label>";
+                                                    //echo "<input type='text' class='form-control' id='id_nombre_seleccionado' name='id_nombre_seleccionado' value='" . htmlspecialchars($row['id_nombre_seleccionado']) . "' readonly>";
+                                                    //echo "</div>";
                                                     echo "<div class='form-group'>";
                                                     echo "<label for='resultados'>RESULTADOS:</label>";
                                                     echo "<textarea class='form-control' id='resultados' name='resultados' readonly>" . htmlspecialchars($row['resultados']) . "</textarea>";

@@ -57,12 +57,12 @@
                             <table class='table'>
                                 <thead>
                                     <tr>
-                                        <th>Nombre Cliente</th>
-                                        <th>Apellido Paterno</th>
-                                        <th>Apellido Materno</th>
-                                        <th>Número de Expediente</th>
-                                        <th>Folio de Diagnostico</th>
-                                        <th>Descargar Diagnostico</th> <!-- Nueva columna agregada -->
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDO PATERNO</th>
+                                        <th>APELLIDO MATERNO</th>
+                                        <th>NÚMERO DE EXPEDIENTE</th>
+                                        <th>FOLIO DE DIAGNOSTICO</th>
+                                        <th>DESCARGAR DIAGNOSTICO</th> <!-- Nueva columna agregada -->
                                     </tr>
                                 </thead>
                                 <!-- Aquí se mostrarán los resultados de la búsqueda -->

@@ -27,7 +27,7 @@
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Recuperacion de contraseña</h1>
+        <h1 class="h3 mb-0 text-gray-800">RECUPERACION DE CONTRASEÑA</h1>
     </div>
 
 
@@ -36,8 +36,7 @@
         <div class="col-xl-12 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Todos los empleados que requieren recuperacion de
-                        contraseña</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">EMPPLEADOS QUE REQUIEREN RECUPERACION DE CONTRASEÑA</h6>
                     <div class="dropdown no-arrow">
 
                     </div>
@@ -61,9 +60,9 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Correo</th>
-                                        <th>Acciones</th>
+                                        <th>NOMBRE</th>
+                                        <th>CORREO</th>
+                                        <th>ACCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabla-usuarios">
@@ -87,8 +86,8 @@
                                             echo "<td>" . $row['nombre'] . "</td>";
                                             echo "<td>" . $row['correo'] . "</td>";
                                             echo "<td>
-                                                    <a href='usuarios.php?id=" . $row['id'] . "' class='btn btn-primary'>Editar</a>
-                                                    <a href='eliminar_usuario_recuperacion.php?id=" . $row['id'] . "' onclick='return confirmarEliminacion();' class='btn btn-danger'>Eliminar</a>
+                                                    <a href='usuarios.php?id=" . $row['id'] . "' class='btn btn-primary'>EDITAR</a>
+                                                    <a href='eliminar_usuario_recuperacion.php?id=" . $row['id'] . "' onclick='return confirmarEliminacion();' class='btn btn-danger'>ELIMINAR</a>
                                                 </td>";
                                             echo "</tr>";
                                         }

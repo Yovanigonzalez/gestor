@@ -32,10 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($conn->query($sql) === TRUE) {
         // Éxito al guardar la cita
-        header("Location: citas.php?mensaje=Cita+guardada+correctamente.&tipo_exito=success");
+        header("Location: citas.php?mensaje=CITA+GUARDADA+CORRECTAMENTE.&tipo_exito=success");
     } else {
         // Error al guardar la cita
-        header("Location: citas.php?mensaje=Error+al+guardar+la+cita:+$conn->error.&tipo_error=danger");
+        header("Location: citas.php?mensaje=ERROR+AL+GUARDAR+LA+CITA:+$conn->error.&tipo_error=danger");
     }
     
     // Cerrar la conexión a la base de datos

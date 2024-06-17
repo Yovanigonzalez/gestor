@@ -40,21 +40,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             sleep(1);
 
             // Redirige a tratamiento.php con el ID del último registro insertado
-            header("Location: tratamiento.php?id=$last_id&mensaje=Los+datos+se+han+guardado+correctamente&tipo_exito=success");
+            header("Location: tratamiento.php?id=$last_id&mensaje=LOS+DATOS+SE+HAN+GUARDADO+CORRECTAMENTE&tipo_exito=success");
             exit(); // Asegura que no haya más ejecución después de la redirección
         } else {
             // Redirige a diagnostico.php con un mensaje de error si falla la ejecución de la consulta
-            header("Location: diagnostico.php?mensaje=Error+al+intentar+guardar+los+datos%3A+" . urlencode($stmt->error) . "&tipo_error=danger");
+            header("Location: diagnostico.php?mensaje=ERROR+AL+INTENTAR+GUARDAR+LOS+DATOS%3A+" . urlencode($stmt->error) . "&tipo_error=danger");
             exit(); // Asegura que no haya más ejecución después de la redirección
         }
     } else {
         // Redirige a diagnostico.php con un mensaje de error si falla la preparación de la consulta
-        header("Location: diagnostico.php?mensaje=Error+al+preparar+la+consulta&tipo_error=danger");
+        header("Location: diagnostico.php?mensaje=ERROR+AL+PREPARAR+LA+CONSULTA&tipo_error=danger");
         exit(); // Asegura que no haya más ejecución después de la redirección
     }
 } else {
     // Redirige a diagnostico.php con un mensaje de error si no se reciben datos del formulario
-    header("Location: diagnostico.php?mensaje=Error%3A+No+se+recibieron+datos+del+formulario&tipo_error=danger");
+    header("Location: diagnostico.php?mensaje=Error%3A+NO+SE+RECIBIERON+DATOS+DEL+FORMULARIO&tipo_error=danger");
     exit(); // Asegura que no haya más ejecución después de la redirección
 }
 ?>
